@@ -14,6 +14,7 @@ typedef uint8_t              u8;
 #define bool                 u8
 #define false                0
 #define true                 1  
+#define PI                   3.1415926 
 
 //选择使用平台
 #define WINDOWS

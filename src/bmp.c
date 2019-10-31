@@ -1,9 +1,19 @@
+/*
+*版权所有 (C)2019,Yueyang.
+*文件名称：main.c
+*内容摘要：LiteCV bmp图片基本操作
+*当前版本：V1.0
+*作者：杨越
+*完成日期：20191020
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <malloc.h>
 #include "string.h"
 #include "bmp.h"
+
 
 
 int ReadbmpFileHeader(char *filepath,BITMAPFILEHEADER *bmfh)
@@ -538,6 +548,21 @@ int SaveAsbmpImage(char *filepath,Mat* mat)
 
 }
 
+Mat bmpcopy(Mat mat)
+{
+   Mat out;
+   out.bmf=mat.bmf;
+   out.bmi=mat.bmi;
+   out.highth=mat.highth;
+   out.width=mat.width;
+   out.pictype=mat.pictype;
+   out.PATH=malloc(100);
+   strcpy(out.PATH,mat.PATH);
+   out.imgData=(BYTE*)malloc(mat.highth*mat.width*3);
+   memcpy(out.imgData,mat.imgData,mat.highth*mat.width*3);
+   return out;
+
+}
 
 
 //对于不同的平台需要自己实现显示函数

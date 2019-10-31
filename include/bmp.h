@@ -1,8 +1,22 @@
+/*
+*版权所有 (C)2019,Yueyang.
+*文件名称：main.c
+*内容摘要：LiteCV bmp图片基本操作
+*当前版本：V1.0
+*作者：杨越
+*完成日期：20191020
+*/
+
 #ifndef BMP_H_INCLUDED
 #define BMP_H_INCLUDED
 
-#include "cv.h"
 #include "Mat.h"
+ void(*show)(Mat* mat);
+ u8* (*at)(Mat* mat,int width,int highth);
+ int (*process)(Mat* mat,int x,int y,u32 color);
+ Mat (*load)(char *filepath);
+ int (*save)(char *filepath,Mat* mat);
+ Mat (*copy)(Mat mat);
 
 
 //检查路径是否合法：文件能打开；以bmp为后缀名
@@ -32,6 +46,7 @@ int bmpprocess(Mat* mat,int width,int highth,u32 color);
 //BMP像素点寻址函数
 u8* bmpat(Mat* mat,int width,int highth);
 
+Mat bmpcopy(Mat mat);
 
 #endif // BMP_H_INCLUDED
 

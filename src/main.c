@@ -1,28 +1,46 @@
+/*
+*版权所有 (C)2019,Yueyang.
+*文件名称：main.c
+*内容摘要：LiteCV基础测试函数
+*当前版本：V1.0
+*作者：杨越
+*完成日期：20191020
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <malloc.h>
 #include <ctype.h>
 #include <process.h>
+
 #include "bmp.h"
 #include "cv.h"
-
+#include "GeoTrans.h"
 
 int main()
 {
    Mat src;
+   Mat dst;
    int i,j;
-   u8* addr;
-   src=bmpload("F:\\myproject\\LiteCV\\picture\\lena.bmp");
-   // PrintbmpInfoHeader(&src->bmi);
-   // printf("%s",src->PATH);
+   Mat_INIT();
+   src=load("F:\\myproject\\LiteCV\\picture\\lena.bmp");
 
-   for(j=0;j<=511;j++)
-      {
-        *(bmpat(&src,j,j)+1)=0x0F;
-      }
-   SaveAsbmpImage("F:\\myproject\\LiteCV\\picture\\lena0.bmp",&src);
-   ShowbmpImage(&src);
+
+   dst=imrotate(src,90);
+   // for(i=0;i<=511;i++)
+   //    for(j=0;j<=511;j++)
+   //    {
+   //       addr=at(&dst,i,j);
+   //       *addr=0xFF;
+   //    }
+
+   save("F:\\myproject\\LiteCV\\picture\\lena16.bmp",&dst);
+   show(&dst);
+   free(dst.PATH);
+   free(dst.imgData);
+   free(src.PATH);
+   free(src.imgData);
 }
 
  

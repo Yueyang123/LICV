@@ -1,16 +1,24 @@
-#include "Mat.h"
+/*
+*版权所有 (C)2019,Yueyang.
+*文件名称：main.c
+*内容摘要：LiteCV基础数据类型Mat实现
+*当前版本：V1.0
+*作者：杨越
+*完成日期：20191020
+*/
 
-    void(*show)(Mat* mat);
-    void (*destory)(Mat* mat); 
-    void (*reshape)(Mat* mat, int rows); 
-    u16* (*at)(Mat* mat,int x,int y,int Index);
-    u16  (*type)(Mat* mat);
-
-
-#ifdef WINDOWS
-
-
+#include "bmp.h"
 
 
-#endif 
+void Mat_INIT()
+{
+    show=ShowbmpImage;
+    at=bmpat;
+    process=bmpprocess;
+    load=bmpload;
+    save=SaveAsbmpImage;
+    copy=bmpcopy;
+}
+
+
 
