@@ -27,13 +27,8 @@ int main()
    src=load("F:\\myproject\\LiteCV\\picture\\lena.bmp");
 
 
-   dst=imrotate(src,90);
-   // for(i=0;i<=511;i++)
-   //    for(j=0;j<=511;j++)
-   //    {
-   //       addr=at(&dst,i,j);
-   //       *addr=0xFF;
-   //    }
+   dst=imrotate(src,30);
+
 
    save("F:\\myproject\\LiteCV\\picture\\lena16.bmp",&dst);
    show(&dst);

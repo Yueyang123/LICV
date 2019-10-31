@@ -9,3 +9,5 @@
 
 
 Mat imrotate(Mat bmpImg,int Angle);
+//DIR:0вС 1ср 2ио  3 об
+Mat immove(Mat mat,int dir,int distance);

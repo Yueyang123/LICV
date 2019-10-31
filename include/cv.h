@@ -20,34 +20,22 @@ typedef uint8_t              u8;
 #define WINDOWS
 
 #ifdef WINDOWS
-// inline CVInit(Mat mat)
-// {  
 
-// }
 #endif
 
 
 
 #ifdef X86_LINUX
-// inline CVInit(Mat mat)
-// {  
 
-// }
 
 #endif
 
 #ifdef ARM_LINUX
-// inline CVInit(Mat mat)
-// {  
 
-// }
 #endif
 
 #ifdef ARM_NONE
-// inline CVInit(Mat mat)
-// {  
 
-// }
 #endif
 
 
