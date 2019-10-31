@@ -27,7 +27,7 @@ int main()
    src=load("F:\\myproject\\LiteCV\\picture\\lena.bmp");
 
 
-   dst=imrotate(src,30);
+    dst=imrotate(src,30);
 
 
    save("F:\\myproject\\LiteCV\\picture\\lena16.bmp",&dst);
