@@ -8,7 +8,15 @@
 */
 
 #include "bmp.h"
+#include "cv.h"
+#include <string.h>
+#include <stdlib.h>
 
+//选择使用平台
+#define WINDOWS
+
+
+#ifdef WINDOWS
 
 void Mat_INIT()
 {
@@ -18,7 +26,50 @@ void Mat_INIT()
     load=bmpload;
     save=SaveAsbmpImage;
     copy=bmpcopy;
+    fileread=fread;
+    fileopen=fopen;
+    fileseek=fseek;
+    fileclose=fclose;
+    Li_malloc=malloc;
+    Li_memcpy=memcpy;
+    Li_free=free;
 }
+
+
+#endif
+
+
+
+#ifdef X86_LINUX
+
+void Mat_INIT()
+{
+    show=ShowbmpImage;
+    at=bmpat;
+    process=bmpprocess;
+    load=bmpload;
+    save=SaveAsbmpImage;
+    copy=bmpcopy;
+    fileread=fread;
+    fileopen=fopen;
+    fileseek=fseek;
+    fileclose=fclose;
+    Li_malloc=malloc;
+    Li_memcpy=memcpy;
+    Li_free=free;
+}
+
+
+#endif
+
+#ifdef ARM_LINUX
+
+#endif
+
+#ifdef ARM_NONE
+
+#endif
+
 
 
 

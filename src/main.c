@@ -11,8 +11,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <malloc.h>
-#include <ctype.h>
-#include <process.h>
 
 #include "bmp.h"
 #include "cv.h"
@@ -24,13 +22,13 @@ int main()
    Mat dst;
    int i,j;
    Mat_INIT();
-   src=load("F:\\myproject\\LiteCV\\picture\\lena.bmp");
+   src=load("E:\\LiteCV\\LiCV\\picture\\lena.bmp");
 
 
     dst=imrotate(src,30);
 
 
-   save("F:\\myproject\\LiteCV\\picture\\lena16.bmp",&dst);
+   save("E:\\LiteCV\\LiCV\\picture\\lena0.bmp",&dst);
    show(&dst);
    free(dst.PATH);
    free(dst.imgData);

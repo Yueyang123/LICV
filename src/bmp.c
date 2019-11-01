@@ -19,43 +19,43 @@
 int ReadbmpFileHeader(char *filepath,BITMAPFILEHEADER *bmfh)
 {
    FILE *fp;
-   fp=fopen(filepath,"rb");
+   fp=fileopen(filepath,"rb");
    if(!fp)
    {
       printf("Can not open the file:%s\n",filepath);
       return -1;
    }
-   if(fread(&bmfh->bfType,sizeof(WORD),1,fp)!=1)
+   if(fileread(&bmfh->bfType,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not read bfType in the file header.\n");
-      fclose(fp);
+      fileclose(fp);
       return -1;
    }
-   if(fread(&bmfh->bfSize,sizeof(DWORD),1,fp)!=1)
+   if(fileread(&bmfh->bfSize,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not read bfSize in the file header.\n");
-      fclose(fp);
+      fileclose(fp);
       return -1;
    }
-   if(fread(&bmfh->bfReserved1,sizeof(WORD),1,fp)!=1)
+   if(fileread(&bmfh->bfReserved1,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not read bfReserved1 in the file header.\n");
-      fclose(fp);
+      fileclose(fp);
       return -1;
    }
-   if(fread(&bmfh->bfReserved2,sizeof(WORD),1,fp)!=1)
+   if(fileread(&bmfh->bfReserved2,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not read bfReserved2 in the file header.\n");
-      fclose(fp);
+      fileclose(fp);
       return -1;
    }
-   if(fread(&bmfh->bfOffBits,sizeof(DWORD),1,fp)!=1)
+   if(fileread(&bmfh->bfOffBits,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not read bfOffBits in the file header.\n");
-      fclose(fp);
+      fileclose(fp);
       return -1;
    }
-   fclose(fp);
+   fileclose(fp);
    return 0;
 }
 
@@ -63,80 +63,80 @@ int ReadbmpFileHeader(char *filepath,BITMAPFILEHEADER *bmfh)
 int ReadbmpInfoHeader(char *filepath,BITMAPINFOHEADER *bmih)
 {
    FILE *fp;
-   fp=fopen(filepath,"rb");
+   fp=fileopen(filepath,"rb");
    if(!fp)
    {
       printf("Can not open the file:%s\n",filepath);
       return -1;
    }
-   fseek(fp,14,SEEK_SET);
-   if(fread(&bmih->biSize,sizeof(DWORD),1,fp)!=1)
+   fileseek(fp,14,SEEK_SET);
+   if(fileread(&bmih->biSize,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not read biSize in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
       return -1;
    }
-   if(fread(&bmih->biWidth,sizeof(LONG),1,fp)!=1)
+   if(fileread(&bmih->biWidth,sizeof(LONG),1,fp)!=1)
    {
       printf("Can not read biWidth in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
       return -1;
    }
-   if(fread(&bmih->biHeight,sizeof(LONG),1,fp)!=1)
+   if(fileread(&bmih->biHeight,sizeof(LONG),1,fp)!=1)
    {
       printf("Can not read biHeight in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
       return -1;
    }
-   if(fread(&bmih->biPlanes,sizeof(WORD),1,fp)!=1)
+   if(fileread(&bmih->biPlanes,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not read biPlanes in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
       return -1;
    }
-   if(fread(&bmih->biBitCount,sizeof(WORD),1,fp)!=1)
+   if(fileread(&bmih->biBitCount,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not read biBitCount in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
       return -1;
    }
-   if(fread(&bmih->biCompression,sizeof(DWORD),1,fp)!=1)
+   if(fileread(&bmih->biCompression,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not read biCompression in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
       return -1;
    }
-   if(fread(&bmih->biSizeImage,sizeof(DWORD),1,fp)!=1)
+   if(fileread(&bmih->biSizeImage,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not read biSizeImage in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
       return -1;
    }
-   if(fread(&bmih->biXPelsPerMeter,sizeof(LONG),1,fp)!=1)
+   if(fileread(&bmih->biXPelsPerMeter,sizeof(LONG),1,fp)!=1)
    {
       printf("Can not read biXPelsPerMeter in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
       return -1;
    }
-   if(fread(&bmih->biYPelsPerMeter,sizeof(LONG),1,fp)!=1)
+   if(fileread(&bmih->biYPelsPerMeter,sizeof(LONG),1,fp)!=1)
    {
       printf("Can not read biYPelsPerMeter in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
       return -1;
    }
-   if(fread(&bmih->biClrUsed,sizeof(DWORD),1,fp)!=1)
+   if(fileread(&bmih->biClrUsed,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not read biClrUsed in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
       return -1;
    }
-   if(fread(&bmih->biClrImportant,sizeof(DWORD),1,fp)!=1)
+   if(fileread(&bmih->biClrImportant,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not read biClrImportant in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
       return -1;
    }
-   fclose(fp);
+   fileclose(fp);
    return 0;
 }
 
@@ -175,30 +175,30 @@ int ReadbmpPixelData(char *filepath,BYTE *imgData)
       printf("Your size: %ld bytes.\n",sizeof(imgData));
       return -1;
    }
-   data=(BYTE*)malloc(dwLineBytes*height*sizeof(BYTE));
+   data=(BYTE*)Li_malloc(dwLineBytes*height*sizeof(BYTE));
    if(!data)
    {
       printf("Can not allocate memory for the pixel data.\n");
       return -1;
    }
-   fp=fopen(filepath,"rb");
+   fp=fileopen(filepath,"rb");
    if(!fp)
    {
       printf("Can not open the file: %s\n",filepath);
-      free(data);
+      Li_free(data);
       return -1;
    }
    if(bitCount==8)
    {
-      fseek(fp,bmfh.bfOffBits,SEEK_SET);
+      fileseek(fp,bmfh.bfOffBits,SEEK_SET);
    }
    else if(bitCount==24)
    {
-      fseek(fp,bmfh.bfOffBits,SEEK_SET);
+      fileseek(fp,bmfh.bfOffBits,SEEK_SET);
    }
    else if(bitCount==16)
    {
-      fseek(fp,bmfh.bfOffBits,SEEK_SET);
+      fileseek(fp,bmfh.bfOffBits,SEEK_SET);
    }
    else
    {
@@ -206,16 +206,16 @@ int ReadbmpPixelData(char *filepath,BYTE *imgData)
       return -1;
    }
    
-   if(fread(data,dwLineBytes*height*sizeof(BYTE),1,fp)!=1)
+   if(fileread(data,dwLineBytes*height*sizeof(BYTE),1,fp)!=1)
    {
       printf("Can not read the pixel data.\n");
-      free(data);
-      fclose(fp);
+      Li_free(data);
+      fileclose(fp);
       return -1;
    }
-   memcpy(imgData,data,dwLineBytes*height*sizeof(BYTE));
-   free(data);
-   fclose(fp);
+   Li_memcpy(imgData,data,dwLineBytes*height*sizeof(BYTE));
+   Li_free(data);
+   fileclose(fp);
    return 0;
 }
 
@@ -308,13 +308,13 @@ void PrintbmpPixelData(BYTE *imgData,int width,int height,int bitCount)
       printf("Error: The extention of the filename must be 'bmp',not 'BMP'\n");
       return -1;
       }
-      fp=fopen(filepath,"r");
+      fp=fileopen(filepath,"r");
       if(!fp)
       {
       printf("Error: The path is not correct.\n");
       return -1;
       }
-      fclose(fp);
+      fileclose(fp);
    }
    else
    {
@@ -334,7 +334,7 @@ Mat bmpload(char *filepath)
     Mat mat;
     i=CheckbmpFilePath(filepath);//µ÷ÓÃº¯Êý
     i=0;
-    mat.PATH=malloc(100);
+    mat.PATH=Li_malloc(100);
     strcpy(mat.PATH,filepath);
 
    
@@ -363,7 +363,7 @@ Mat bmpload(char *filepath)
      bitCount=mat.bmi.biBitCount;
      mat.pictype=mat.bmi.biBitCount/8;
      dwLineBytes=GetLineBytes(mat.width,bitCount);
-     mat.imgData=(BYTE*)malloc(dwLineBytes*(mat.highth)*sizeof(BYTE));
+     mat.imgData=(BYTE*)Li_malloc(dwLineBytes*(mat.highth)*sizeof(BYTE));
      if(!mat.imgData)
      {
       printf("Can not allocate memory for the image.\n");
@@ -417,7 +417,7 @@ int SaveAsbmpImage(char *filepath,Mat* mat)
    height=mat->bmi.biHeight;
    dwLineBytes=GetLineBytes(mat->bmi.biWidth,mat->bmi.biBitCount);
    strcpy(mat->PATH,filepath);
-   fp=fopen(filepath,"wb");
+   fp=fileopen(filepath,"wb");
    if(!fp)
    {
       printf("Error: Can not open the file:%s\n",filepath);
@@ -434,96 +434,96 @@ int SaveAsbmpImage(char *filepath,Mat* mat)
    if(fwrite(&mat->bmf.bfType,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not write bfType in the file header.\n");
-      fclose(fp);
+      fileclose(fp);
    }
 
    if(fwrite(&mat->bmf.bfSize,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write bfSize in the file header.\n");
-      fclose(fp);
+      fileclose(fp);
    }
 
    if(fwrite(&mat->bmf.bfReserved1,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not write bfReserved1 in the file header.\n");
-      fclose(fp);
+      fileclose(fp);
    }
 
    if(fwrite(&mat->bmf.bfReserved2,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not write bfReserved2 in the file header.\n");
-      fclose(fp);
+      fileclose(fp);
    }
 
    if(fwrite(&mat->bmf.bfOffBits,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write bfOffBits in the file header.\n");
-      fclose(fp);
+      fileclose(fp);
    }
    if(fwrite(&mat->bmi.biSize,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write biSize in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
    }
 
    if(fwrite(&mat->bmi.biWidth,sizeof(LONG),1,fp)!=1)
    {
       printf("Can not write biWidth in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
    }
 
    if(fwrite(&mat->bmi.biHeight,sizeof(LONG),1,fp)!=1)
    {
       printf("Can not write biHeight in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
    }
 
    if(fwrite(&mat->bmi.biPlanes,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not write biPlanes in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
    }
 
    if(fwrite(&mat->bmi.biBitCount,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not write biBitCount in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
    }
 
    if(fwrite(&mat->bmi.biCompression,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write biCompression in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
    }
 
    if(fwrite(&mat->bmi.biSizeImage,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write biSizeImage in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
    }
 
    if(fwrite(&mat->bmi.biXPelsPerMeter,sizeof(LONG),1,fp)!=1)
    {
       printf("Can not write biXPelsPerMeter in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
    }
 
    if(fwrite(&mat->bmi.biYPelsPerMeter,sizeof(LONG),1,fp)!=1)
    {
       printf("Can not write biYPelsPerMeter in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
    }
 
    if(fwrite(&mat->bmi.biClrUsed,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write biClrUsed in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
    }
 
    if(fwrite(&mat->bmi.biClrImportant,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write biClrImportant in the info header.\n");
-      fclose(fp);
+      fileclose(fp);
    }
 
    if(mat->bmi.biBitCount==8)
@@ -531,17 +531,17 @@ int SaveAsbmpImage(char *filepath,Mat* mat)
       if(fwrite(pal,sizeof(RGBQUAD),256,fp)!=256)
       {
       printf("Error: can not write the color palette.\n");
-      fclose(fp);
+      fileclose(fp);
       }
    }
 
    if(fwrite(mat->imgData,height*dwLineBytes,1,fp)!=1)
    {
       printf("Error: can not write the pixel data.\n");
-      fclose(fp);
+      fileclose(fp);
    }
 
-   fclose(fp);
+   fileclose(fp);
    printf("Save As the image successfully.\n");
 
    return 0;
@@ -556,10 +556,10 @@ Mat bmpcopy(Mat mat)
    out.highth=mat.highth;
    out.width=mat.width;
    out.pictype=mat.pictype;
-   out.PATH=malloc(100);
+   out.PATH=Li_malloc(100);
    strcpy(out.PATH,mat.PATH);
-   out.imgData=(BYTE*)malloc(mat.highth*mat.width*3);
-   memcpy(out.imgData,mat.imgData,mat.highth*mat.width*3);
+   out.imgData=(BYTE*)Li_malloc(mat.highth*mat.width*3);
+   Li_memcpy(out.imgData,mat.imgData,mat.highth*mat.width*3);
    return out;
 
 }
