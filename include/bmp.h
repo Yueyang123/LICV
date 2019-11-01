@@ -12,19 +12,22 @@
 #include "stdio.h"
 #include "Mat.h"
 
- int (*fileread)(void * _DstBuf,int _ElementSize,int _Count,FILE * _File);
+
+ int    (*filewrite)(const void *  _Str,int _Size,int _Count,FILE *  _File);
+ int    (*fileread)(void * _DstBuf,int _ElementSize,int _Count,FILE * _File);
  FILE * (*fileopen)(const char *  _Filename,const char *  _Mode) ;
  int    (*fileseek)(FILE *_File,long _Offset,int _Origin);
  int    (*fileclose)(FILE *_File);
  void   (*Li_free)(void *_Memory);
  void * (*Li_malloc)(size_t _Size);
  void * (*Li_memcpy)(void * _Dst,const void * _Src,size_t _Size);
-  void(*show)(Mat* mat);
- u8* (*at)(Mat* mat,int width,int highth);
- int (*process)(Mat* mat,int x,int y,u32 color);
- Mat (*load)(char *filepath);
- int (*save)(char *filepath,Mat* mat);
- Mat (*copy)(Mat mat);
+ void   (*show)(Mat* mat);
+ u8*    (*at)(Mat* mat,int width,int highth);
+ int    (*process)(Mat* mat,int x,int y,u32 color);
+ Mat    (*load)(char *filepath);
+ int    (*save)(char *filepath,Mat* mat);
+ Mat    (*copy)(Mat mat);
+ void   (*destory)(Mat* mat);
 
 //检查路径是否合法：文件能打开；以bmp为后缀名
 int CheckbmpFilePath(char *filepath);
@@ -54,6 +57,8 @@ int bmpprocess(Mat* mat,int width,int highth,u32 color);
 u8* bmpat(Mat* mat,int width,int highth);
 
 Mat bmpcopy(Mat mat);
+
+void bmpdestory(Mat* mat);
 
 #endif // BMP_H_INCLUDED
 

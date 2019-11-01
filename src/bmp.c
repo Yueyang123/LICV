@@ -168,13 +168,7 @@ int ReadbmpPixelData(char *filepath,BYTE *imgData)
    height=bmih.biHeight;
    bitCount=bmih.biBitCount;
    dwLineBytes=GetLineBytes(width,bitCount);
-   if(_msize(imgData)!=(dwLineBytes*height))
-   {
-      printf("The size you allocate for the pixel data is not right.\n");
-      printf("Fittable size: %ld bytes.\n",(dwLineBytes*height));
-      printf("Your size: %ld bytes.\n",sizeof(imgData));
-      return -1;
-   }
+
    data=(BYTE*)Li_malloc(dwLineBytes*height*sizeof(BYTE));
    if(!data)
    {
@@ -431,96 +425,96 @@ int SaveAsbmpImage(char *filepath,Mat* mat)
       pal[i].rgbRed=i;
    }
 
-   if(fwrite(&mat->bmf.bfType,sizeof(WORD),1,fp)!=1)
+   if(filewrite(&mat->bmf.bfType,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not write bfType in the file header.\n");
       fileclose(fp);
    }
 
-   if(fwrite(&mat->bmf.bfSize,sizeof(DWORD),1,fp)!=1)
+   if(filewrite(&mat->bmf.bfSize,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write bfSize in the file header.\n");
       fileclose(fp);
    }
 
-   if(fwrite(&mat->bmf.bfReserved1,sizeof(WORD),1,fp)!=1)
+   if(filewrite(&mat->bmf.bfReserved1,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not write bfReserved1 in the file header.\n");
       fileclose(fp);
    }
 
-   if(fwrite(&mat->bmf.bfReserved2,sizeof(WORD),1,fp)!=1)
+   if(filewrite(&mat->bmf.bfReserved2,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not write bfReserved2 in the file header.\n");
       fileclose(fp);
    }
 
-   if(fwrite(&mat->bmf.bfOffBits,sizeof(DWORD),1,fp)!=1)
+   if(filewrite(&mat->bmf.bfOffBits,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write bfOffBits in the file header.\n");
       fileclose(fp);
    }
-   if(fwrite(&mat->bmi.biSize,sizeof(DWORD),1,fp)!=1)
+   if(filewrite(&mat->bmi.biSize,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write biSize in the info header.\n");
       fileclose(fp);
    }
 
-   if(fwrite(&mat->bmi.biWidth,sizeof(LONG),1,fp)!=1)
+   if(filewrite(&mat->bmi.biWidth,sizeof(LONG),1,fp)!=1)
    {
       printf("Can not write biWidth in the info header.\n");
       fileclose(fp);
    }
 
-   if(fwrite(&mat->bmi.biHeight,sizeof(LONG),1,fp)!=1)
+   if(filewrite(&mat->bmi.biHeight,sizeof(LONG),1,fp)!=1)
    {
       printf("Can not write biHeight in the info header.\n");
       fileclose(fp);
    }
 
-   if(fwrite(&mat->bmi.biPlanes,sizeof(WORD),1,fp)!=1)
+   if(filewrite(&mat->bmi.biPlanes,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not write biPlanes in the info header.\n");
       fileclose(fp);
    }
 
-   if(fwrite(&mat->bmi.biBitCount,sizeof(WORD),1,fp)!=1)
+   if(filewrite(&mat->bmi.biBitCount,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not write biBitCount in the info header.\n");
       fileclose(fp);
    }
 
-   if(fwrite(&mat->bmi.biCompression,sizeof(DWORD),1,fp)!=1)
+   if(filewrite(&mat->bmi.biCompression,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write biCompression in the info header.\n");
       fileclose(fp);
    }
 
-   if(fwrite(&mat->bmi.biSizeImage,sizeof(DWORD),1,fp)!=1)
+   if(filewrite(&mat->bmi.biSizeImage,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write biSizeImage in the info header.\n");
       fileclose(fp);
    }
 
-   if(fwrite(&mat->bmi.biXPelsPerMeter,sizeof(LONG),1,fp)!=1)
+   if(filewrite(&mat->bmi.biXPelsPerMeter,sizeof(LONG),1,fp)!=1)
    {
       printf("Can not write biXPelsPerMeter in the info header.\n");
       fileclose(fp);
    }
 
-   if(fwrite(&mat->bmi.biYPelsPerMeter,sizeof(LONG),1,fp)!=1)
+   if(filewrite(&mat->bmi.biYPelsPerMeter,sizeof(LONG),1,fp)!=1)
    {
       printf("Can not write biYPelsPerMeter in the info header.\n");
       fileclose(fp);
    }
 
-   if(fwrite(&mat->bmi.biClrUsed,sizeof(DWORD),1,fp)!=1)
+   if(filewrite(&mat->bmi.biClrUsed,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write biClrUsed in the info header.\n");
       fileclose(fp);
    }
 
-   if(fwrite(&mat->bmi.biClrImportant,sizeof(DWORD),1,fp)!=1)
+   if(filewrite(&mat->bmi.biClrImportant,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write biClrImportant in the info header.\n");
       fileclose(fp);
@@ -528,14 +522,14 @@ int SaveAsbmpImage(char *filepath,Mat* mat)
 
    if(mat->bmi.biBitCount==8)
    {
-      if(fwrite(pal,sizeof(RGBQUAD),256,fp)!=256)
+      if(filewrite(pal,sizeof(RGBQUAD),256,fp)!=256)
       {
       printf("Error: can not write the color palette.\n");
       fileclose(fp);
       }
    }
 
-   if(fwrite(mat->imgData,height*dwLineBytes,1,fp)!=1)
+   if(filewrite(mat->imgData,height*dwLineBytes,1,fp)!=1)
    {
       printf("Error: can not write the pixel data.\n");
       fileclose(fp);
@@ -564,6 +558,13 @@ Mat bmpcopy(Mat mat)
 
 }
 
+void bmpdestory(Mat* mat)
+{
+   free(mat->PATH);
+   free(mat->imgData);
+}
+
+
 
 //对于不同的平台需要自己实现显示函数
 #ifdef WINDOWS
@@ -572,6 +573,20 @@ void ShowbmpImage(Mat* mat)
 {
    char cmd[266];
    strcpy(cmd,"start ");
+   strcat(cmd,mat->PATH);
+   printf("%s\n",cmd);
+   system(cmd);
+}
+
+#endif 
+
+
+#ifdef X86_LINUX
+
+void ShowbmpImage(Mat* mat)
+{
+   char cmd[266];
+   strcpy(cmd,"display ");
    strcat(cmd,mat->PATH);
    printf("%s\n",cmd);
    system(cmd);

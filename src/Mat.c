@@ -25,7 +25,9 @@ void Mat_INIT()
     process=bmpprocess;
     load=bmpload;
     save=SaveAsbmpImage;
+    destory=bmpdestory;
     copy=bmpcopy;
+    filewrite=fwrite;
     fileread=fread;
     fileopen=fopen;
     fileseek=fseek;
