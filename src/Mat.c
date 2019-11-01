@@ -12,9 +12,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-//选择使用平台
-#define WINDOWS
-
 
 #ifdef WINDOWS
 

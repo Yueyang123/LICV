@@ -11,16 +11,7 @@
 #ifndef _CV_H
 #define _CV_H
 
-typedef unsigned short       WORD;
-typedef unsigned long        DWORD;
-typedef long                 LONG;
-typedef unsigned char        BYTE;
-typedef unsigned             char uint8_t;
-typedef unsigned short       int uint16_t;
-typedef unsigned             int uint32_t;
-typedef uint32_t             u32;
-typedef uint16_t             u16;
-typedef uint8_t              u8;
+
 #define bool                 u8
 #define false                0
 #define true                 1  
@@ -31,13 +22,34 @@ typedef uint8_t              u8;
 
 #ifdef WINDOWS
 
-
+typedef unsigned short       WORD;
+typedef unsigned long        DWORD;
+typedef long                 LONG;
+typedef unsigned char        BYTE;
+typedef unsigned             char uint8_t;
+typedef unsigned short       int uint16_t;
+typedef unsigned             int uint32_t;
+typedef uint32_t             u32;
+typedef uint16_t             u16;
+typedef uint8_t              u8;
 
 #endif
 
 
 
 #ifdef X86_LINUX
+
+typedef unsigned             char uint8_t;
+typedef unsigned short       int uint16_t;
+typedef unsigned             int uint32_t;
+typedef uint32_t             u32;
+typedef uint16_t             u16;
+typedef uint8_t              u8;
+typedef unsigned short       WORD;
+typedef u32                  DWORD;
+typedef u32                  LONG;
+typedef unsigned char        BYTE;
+
 
 
 #endif
