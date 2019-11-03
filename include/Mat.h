@@ -75,5 +75,7 @@ typedef struct
 }Mat;
 
 void Mat_INIT();
+Mat MatCreate(u8* filepath,u16 width,u16 height,u8 type);
+
 
 #endif // !Mat_H

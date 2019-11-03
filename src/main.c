@@ -22,13 +22,16 @@ int main()
    Mat src;
    Mat dst;
    int i,j;
-   Mat_INIT();
-   src=load("..\\picture\\lena0.bmp");
+   Mat_Init();
+   //src=load("..\\picture\\lena0.bmp");
 
-   dst=imrotate(src,30);
-   save("..\\picture\\lena.bmp",&dst);
-   show(&dst);
-   destory(&dst);
+   //  dst=imrotate(src,30);
+    src=create("..\\picture\\test.bmp",120,120,3);
+    save("..\\picture\\test.bmp",&src);
+    PrintbmpFileHeader(&src.bmf);
+    PrintbmpInfoHeader(&src.bmi);
+   // show(&dst);
+   // destory(&dst);
    destory(&src);
    return 0; 
 }

@@ -29,7 +29,7 @@ Log: 11.3 Yueyang
  int    (*save)      (char *filepath,Mat* mat);
  Mat    (*copy)      (Mat mat);
  void   (*destory)   (Mat* mat);
-
+ Mat    (*create) (u8* filepath,u16 width,u16 height,u8 type);
 //检查路径是否合法
 int CheckbmpFilePath(char *filepath);
 //读BMP文件头

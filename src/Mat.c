@@ -13,10 +13,38 @@ Log: 11.3 Yueyang
 #include <string.h>
 #include <stdlib.h>
 
+//创建一个空白的图片类
+Mat MatCreate(u8* filepath,u16 width,u16 height,u8 type)
+{
+    Mat mat;
+    mat.bmi.biBitCount=type*8;
+    mat.bmi.biSize=sizeof(BITMAPINFOHEADER);
+    mat.width=width;
+    mat.bmi.biWidth=width;
+    mat.highth=height;
+    mat.bmi.biHeight=height;
+    mat.bmi.biPlanes=1;
+    mat.bmi.biCompression=0;
+    mat.bmi.biSizeImage=height*width*type;
+    mat.bmi.biClrUsed=0;
+    mat.bmi.biClrImportant=0;
+    mat.bmi.biXPelsPerMeter=2874;
+    mat.bmi.biYPelsPerMeter=2874;
+
+    mat.bmf.bfType=((u16)'M'<<8)+'B';
+    mat.bmf.bfSize=786486;
+    mat.bmf.bfOffBits=54;
+    mat.imgData=Li_malloc(height*width*type);
+    mat.PATH=Li_malloc(100);
+    strcpy(mat.PATH,filepath);
+    return mat;
+}
+
+
 
 #ifdef WINDOWS
 
-void Mat_INIT()
+void Mat_Init()
 {
     show=ShowbmpImage;
     at=bmpat;
@@ -25,6 +53,7 @@ void Mat_INIT()
     save=SaveAsbmpImage;
     destory=bmpdestory;
     copy=bmpcopy;
+    create=MatCreate;
     filewrite=fwrite;
     fileread=fread;
     fileopen=fopen;
@@ -42,7 +71,7 @@ void Mat_INIT()
 
 #ifdef X86_LINUX
 
-void Mat_INIT()
+void Mat_Init()
 {
     show=ShowbmpImage;
     at=bmpat;

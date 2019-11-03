@@ -320,7 +320,6 @@ void PrintbmpPixelData(BYTE *imgData,int width,int height,int bitCount)
 }
 
 
-//bmp�ļ��Ķ�ȡ����뺯��
 Mat bmpload(char *filepath)
 {
     int i,q;
@@ -353,6 +352,8 @@ Mat bmpload(char *filepath)
       printf("Read the info header failed.\n");
       q=1;
      }
+     PrintbmpFileHeader(&mat.bmf);
+     PrintbmpInfoHeader(&mat.bmi);
      mat.highth=mat.bmi.biHeight;
      mat.width=mat.bmi.biWidth;
      bitCount=mat.bmi.biBitCount;
@@ -566,8 +567,6 @@ void bmpdestory(Mat* mat)
 }
 
 
-
-//���ڲ�ͬ��ƽ̨��Ҫ�Լ�ʵ����ʾ����
 #ifdef WINDOWS
 
 void ShowbmpImage(Mat* mat)
