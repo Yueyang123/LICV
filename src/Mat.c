@@ -1,11 +1,12 @@
-/*
-*°æÈ¨ËùÓĞ (C)2019,Yueyang.
-*ÎÄ¼şÃû³Æ£ºMat.c
-*ÄÚÈİÕªÒª£ºLiteCV»ù´¡Êı¾İÀàĞÍMatÊµÏÖ
-*µ±Ç°°æ±¾£ºV1.0
-*×÷Õß£ºÑîÔ½
-*Íê³ÉÈÕÆÚ£º20191020
-*/
+ï»¿/*************************************************
+Copyright Â© Yueyang Co. Ltd. 2019-2029. All rights reserved.
+File name: Mat.c
+Authorï¼š Yueyang
+Version: V1.0
+Description: æä¾›Matç»“æ„ä½“
+Others: 
+Log: 11.3 Yueyang
+*************************************************/
 
 #include "bmp.h"
 #include "cv.h"

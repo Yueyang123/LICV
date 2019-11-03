@@ -1,11 +1,12 @@
-/*
-*°æÈ¨ËùÓĞ (C)2019,Yueyang.
-*ÎÄ¼şÃû³Æ£ºmain.c
-*ÄÚÈİÕªÒª£ºLiteCV»ù´¡²âÊÔº¯Êı
-*µ±Ç°°æ±¾£ºV1.0
-*×÷Õß£ºÑîÔ½
-*Íê³ÉÈÕÆÚ£º20191020
-*/
+ï»¿/*************************************************
+Copyright Â© Yueyang Co. Ltd. 2019-2029. All rights reserved.
+File name: cv.h
+Authorï¼š Yueyang
+Version: V1.0
+Description: LiteCVè¿è¡Œä¸»å‡½æ•°
+Others: 
+Log: 11.3 Yueyang
+*************************************************/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,10 +23,10 @@ int main()
    Mat dst;
    int i,j;
    Mat_INIT();
-   src=load("F:\\myproject\\LiteCV\\picture\\lena0.bmp");
+   src=load("..\\picture\\lena0.bmp");
 
    dst=imrotate(src,30);
-   save("F:\\myproject\\LiteCV\\picture\\lena.bmp",&dst);
+   save("..\\picture\\lena.bmp",&dst);
    show(&dst);
    destory(&dst);
    destory(&src);

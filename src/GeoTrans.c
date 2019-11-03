@@ -1,11 +1,12 @@
-/*
-*°æÈ¨ËùÓĞ (C)2019,Yueyang.
-*ÎÄ¼şÃû³Æ£ºmain.c
-*ÄÚÈİÕªÒª£ºLiteCV¼¸ºÎ±ä»»
-*µ±Ç°°æ±¾£ºV1.0
-*×÷Õß£ºÑîÔ½
-*Íê³ÉÈÕÆÚ£º20191020
-*/
+ï»¿/*************************************************
+Copyright Â© Yueyang Co. Ltd. 2019-2029. All rights reserved.
+File name: GeoTrans.c
+Authorï¼š Yueyang
+Version: V1.0
+Description: æä¾›å¯¹äºå›¾ç‰‡çš„å‡ ä½•å˜æ¢
+Others: 
+Log: 11.3 Yueyang
+*************************************************/
 
 #include "cv.h"
 #include "bmp.h"
@@ -25,12 +26,12 @@ Mat imrotate(Mat mat,int Angle)
 {
     u8* inaddr;
     u8* outaddr;
-    double angle;//ÒªĞı×ªµÄ»¡¶ÈÊı
+    double angle;
     int step = 0;
 	int Rot_step = 0;
     int i, j;
-    int midX_pre,midY_pre,midX_aft,midY_aft;//Ğı×ªÇ°ºóµÄÖĞĞÄµãµÄ×ø±ê
-    int pre_i,pre_j,after_i,after_j;//Ğı×ªÇ°ºó¶ÔÓ¦µÄÏñËØµã×ø±ê
+    int midX_pre,midY_pre,midX_aft,midY_aft;
+    int pre_i,pre_j,after_i,after_j;
     angle = 1.0 * Angle * PI / 180;
     Mat out=copy(mat);
 
@@ -44,7 +45,7 @@ Mat imrotate(Mat mat,int Angle)
                 *(inaddr+2)=0x00;
             }
         }
-        //×ø±ê±ä»»
+    
 		for(i = 0;i < mat.highth;i++)
 		{
 			for(j = 0;j < mat.width;j++)
@@ -63,8 +64,7 @@ Mat imrotate(Mat mat,int Angle)
         return out;
 } 
 
-//DIR:0×ó  1ÓÒ 2ÉÏ  3 ÏÂ
-//distance ÒÆ¶¯µÄÏñËØ¾àÀë
+
 Mat immove(Mat mat,int dir,int distance)
 {
     u8* inaddr;

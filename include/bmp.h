@@ -1,18 +1,19 @@
-/*
-*°æÈ¨ËùÓĞ (C)2019,Yueyang.
-*ÎÄ¼şÃû³Æ£ºbmp.h
-*ÄÚÈİÕªÒª£ºLiteCV bmpÍ¼Æ¬»ù±¾²Ù×÷
-*µ±Ç°°æ±¾£ºV1.0
-*×÷Õß£ºÑîÔ½
-*Íê³ÉÈÕÆÚ£º20191020
-*/
+ï»¿/*************************************************
+Copyright Â© Yueyang Co. Ltd. 2019-2029. All rights reserved.
+File name: bmp.h
+Authorï¼š Yueyang
+Version: V1.0
+Description: æä¾›å¯¹äºbmpæ–‡ä»¶çš„æ“ä½œå‡½æ•°
+Others: 
+Log: 11.3 Yueyang
+*************************************************/
 
 #ifndef BMP_H_INCLUDED
 #define BMP_H_INCLUDED
 #include "stdio.h"
 #include "Mat.h"
 
-
+//é€šé…æŒ‡é’ˆæä¾›ï¼Œè·¨å¹³å°ä¸»è¦çš„å®ç°æ–¹å¼
  int    (*filewrite) (const void *  _Str,int _Size,int _Count,void *  _File);
  int    (*fileread)  (void * _DstBuf,int _ElementSize,int _Count,void * _File);
  void * (*fileopen)  (const char *  _Filename,const char *  _Mode) ;
@@ -29,38 +30,38 @@
  Mat    (*copy)      (Mat mat);
  void   (*destory)   (Mat* mat);
 
-//¼ì²éÂ·¾¶ÊÇ·ñºÏ·¨£ºÎÄ¼şÄÜ´ò¿ª£»ÒÔbmpÎªºó×ºÃû
+//æ£€æŸ¥è·¯å¾„æ˜¯å¦åˆæ³•
 int CheckbmpFilePath(char *filepath);
-//¶ÁÈëÎ»Í¼µÄÎÄ¼şÍ·
+//è¯»BMPæ–‡ä»¶å¤´
 int ReadbmpFileHeader(char *filepath,BITMAPFILEHEADER *bmfh);
-//´òÓ¡Î»Í¼µÄÎÄ¼şÍ·
+//æ‰“å°BMPæ–‡ä»¶å¤´
 void PrintbmpFileHeader(BITMAPFILEHEADER *bmfh);
-//¶ÁÈëÎ»Í¼µÄĞÅÏ¢Í·
+//è¯»BMPä¿¡æ¯å¤´
 int ReadbmpInfoHeader(char *filepath,BITMAPINFOHEADER *bmih);
-//´òÓ¡Î»Í¼µÄĞÅÏ¢Í·
+//æ‰“å°BMPä¿¡æ¯å¤´
 void PrintbmpInfoHeader(BITMAPINFOHEADER *bmih);
-//¶ÁÈëÎ»Í¼µÄÏñËØÊı¾İ
+//è¯»å–BMPçš„å›¾åƒæ•°æ®
 int ReadbmpPixelData(char *filepath,BYTE *imgData);
-//¼ÆËãÃ¿ĞĞÏñËØËùÕ¼µÄ×Ö½ÚÊı
+//è·å–å›¾åƒæ¯ä¸€è¡Œæ‰€å ç”¨çš„å­—èŠ‚æ•°
 LONG GetLineBytes(int imgWidth,int bitCount);
-//´òÓ¡Î»Í¼µÄÏñËØÊı¾İ
+//æ‰“å°ä½å›¾æ•°æ®ä¿¡æ¯
 void PrintbmpPixelData(BYTE *imgData,int width,int height,int bitCount);
-//Áí´æÎªÎ»Í¼
+//æä¾›ä¸€ä¸ªMATçš„ç»“æ„ä½“å°†å…¶å­˜å‚¨ä¸ºBMPæ–‡ä»¶
 int SaveAsbmpImage(char *filepath,Mat* mat);
-//ÏÔÊ¾Î»Í¼
+//å›¾ç‰‡æ˜¾ç¤º æ³¨æ„åœ¨ä¸åŒçš„ç¡¬ä»¶å¹³å°ä¸Šéœ€è¦é‡å†™è¿™ä¸ªå‡½æ•°
 void ShowbmpImage(Mat* mat);
-//bmpÎÄ¼şµÄ¶ÁÈ¡Óë½âÂëº¯Êı
+//åŠ è½½BMPå›¾ç‰‡ï¼Œå¹¶è¿”å›ä¸€ä¸ªMATç»“æ„ä½“
 Mat bmpload(char *filepath);
-//BMPÍ¼Æ¬´¦Àíµ¥¸öÏñËØµã
+//å¯¹äºå›¾ç‰‡çš„æ¯ä¸€ä¸ªåƒç´ åˆ†åˆ«æ“ä½œ
 int bmpprocess(Mat* mat,int width,int highth,u32 color);
-//BMPÏñËØµãÑ°Ö·º¯Êı
+//è·å–BMPæŸä¸ªåƒç´ æ‰€åœ¨çš„åœ°å€
 u8* bmpat(Mat* mat,int width,int highth);
-
+//BMPæ‹·è´å‡½æ•°
 Mat bmpcopy(Mat mat);
-
+//ææ„å‡½æ•°
 void bmpdestory(Mat* mat);
 
-#endif // BMP_H_INCLUDED
+#endif _INCLUDED
 
 
 

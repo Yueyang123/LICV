@@ -1,12 +1,12 @@
-/*
-*°æÈ¨ËùÓĞ (C)2019,Yueyang.
-*ÎÄ¼şÃû³Æ£ºcv.h
-*ÄÚÈİÕªÒª£ºLiteCV¶¥²ãÍ·ÎÄ¼ş
-*µ±Ç°°æ±¾£ºV1.0
-*×÷Õß£ºÑîÔ½
-*Íê³ÉÈÕÆÚ£º20191020
-*/
-
+ï»¿/*************************************************
+Copyright Â© Yueyang Co. Ltd. 2019-2029. All rights reserved.
+File name: cv.h
+Authorï¼š Yueyang
+Version: V1.0
+Description: LiteCVé¡¶å±‚å¤´æ–‡ä»¶ï¼Œæä¾›åŸºç¡€æ•°æ®ç±»å‹
+Others: 
+Log: 11.3 Yueyang
+*************************************************/
 
 #ifndef _CV_H
 #define _CV_H
@@ -17,9 +17,11 @@
 #define true                 1  
 #define PI                   3.1415926 
 
-//Ñ¡ÔñÊ¹ÓÃÆ½Ì¨
+
 #define WINDOWS
 
+
+//åœ¨ä¸åŒçš„å¹³å°ä¸Šä¸€äº›æ•°æ®çš„å­—é•¿ä¸ä¸€æ ·
 #ifdef WINDOWS
 
 typedef unsigned short       WORD;

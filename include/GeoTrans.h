@@ -1,13 +1,13 @@
-/*
-*°æÈ¨ËùÓĞ (C)2019,Yueyang.
-*ÎÄ¼şÃû³Æ£ºmain.c
-*ÄÚÈİÕªÒª£ºLiteCV¼¸ºÎ±ä»»
-*µ±Ç°°æ±¾£ºV1.0
-*×÷Õß£ºÑîÔ½
-*Íê³ÉÈÕÆÚ£º20191020
-*/
-
+ï»¿/*************************************************
+Copyright Â© Yueyang Co. Ltd. 2019-2029. All rights reserved.
+File name: GeoTrans.h
+Authorï¼š Yueyang
+Version: V1.0
+Description: æä¾›å¯¹äºå›¾ç‰‡çš„å‡ ä½•å˜æ¢
+Others: 
+Log: 11.3 Yueyang
+*************************************************/
 
 Mat imrotate(Mat bmpImg,int Angle);
-//DIR:0×ó 1ÓÒ 2ÉÏ  3 ÏÂ
+
 Mat immove(Mat mat,int dir,int distance);

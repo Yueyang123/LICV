@@ -1,18 +1,17 @@
-/*
-*°æÈ¨ËùÓĞ (C)2019,Yueyang.
-*ÎÄ¼şÃû³Æ£ºMat.h
-*ÄÚÈİÕªÒª£ºLiteCV»ù´¡Êı¾İÀàĞÍMatÊµÏÖ
-*µ±Ç°°æ±¾£ºV1.0
-*×÷Õß£ºÑîÔ½
-*Íê³ÉÈÕÆÚ£º20191020
-*/
+ï»¿/*************************************************
+Copyright Â© Yueyang Co. Ltd. 2019-2029. All rights reserved.
+File name: Mat.h
+Authorï¼š Yueyang
+Version: V1.0
+Description: æä¾›Matç»“æ„ä½“
+Others: 
+Log: 11.3 Yueyang
+*************************************************/
 
 #ifndef Mat_H
 #define MAT_H
 
 #include "cv.h"
-
-
 
 #define BMP_8    0X01
 #define BMP_565  0x02
@@ -59,8 +58,6 @@ typedef struct tagBITMAPINFO
     BITMAPINFOHEADER bmiHeader;
     RGBQUAD bmiColors[1];
 }BITMAPINFO;
-
-
 
 
 typedef struct

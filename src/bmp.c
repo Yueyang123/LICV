@@ -1,11 +1,12 @@
-/*
-*°æÈ¨ËùÓĞ (C)2019,Yueyang.
-*ÎÄ¼şÃû³Æ£ºmain.c
-*ÄÚÈİÕªÒª£ºLiteCV bmpÍ¼Æ¬»ù±¾²Ù×÷
-*µ±Ç°°æ±¾£ºV1.0
-*×÷Õß£ºÑîÔ½
-*Íê³ÉÈÕÆÚ£º20191020
-*/
+ï»¿/*************************************************
+Copyright Â© Yueyang Co. Ltd. 2019-2029. All rights reserved.
+File name: bmp.c
+Authorï¼š Yueyang
+Version: V1.0
+Description: æä¾›å¯¹äºbmpæ–‡ä»¶çš„æ“ä½œå‡½æ•°
+Others: 
+Log: 11.3 Yueyang
+*************************************************/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -319,14 +320,14 @@ void PrintbmpPixelData(BYTE *imgData,int width,int height,int bitCount)
 }
 
 
-//bmpÎÄ¼şµÄ¶ÁÈ¡Óë½âÂëº¯Êı
+//bmpï¿½Ä¼ï¿½ï¿½Ä¶ï¿½È¡ï¿½ï¿½ï¿½ï¿½ëº¯ï¿½ï¿½
 Mat bmpload(char *filepath)
 {
     int i,q;
     int bitCount;
     DWORD dwLineBytes;
     Mat mat;
-    i=CheckbmpFilePath(filepath);//µ÷ÓÃº¯Êı
+    i=CheckbmpFilePath(filepath);
     i=0;
     mat.PATH=Li_malloc(100);
     strcpy(mat.PATH,filepath);
@@ -376,7 +377,7 @@ Mat bmpload(char *filepath)
      return mat;
 }
 
-//¶ÔÓÚÍ¼Æ¬µ¥¸öÏñËØ½øĞĞ²Ù×÷
+
 int bmpprocess(Mat* mat,int width,int highth,u32 color)
 {
    u32 offset;
@@ -566,7 +567,7 @@ void bmpdestory(Mat* mat)
 
 
 
-//¶ÔÓÚ²»Í¬µÄÆ½Ì¨ĞèÒª×Ô¼ºÊµÏÖÏÔÊ¾º¯Êı
+//ï¿½ï¿½ï¿½Ú²ï¿½Í¬ï¿½ï¿½Æ½Ì¨ï¿½ï¿½Òªï¿½Ô¼ï¿½Êµï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
 #ifdef WINDOWS
 
 void ShowbmpImage(Mat* mat)
