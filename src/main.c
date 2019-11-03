@@ -23,12 +23,11 @@ int main()
    int i,j;
    Mat_INIT();
    src=load("F:\\myproject\\LiteCV\\picture\\lena0.bmp");
-   printf("(%d,%d,%d,%d)",sizeof(WORD),sizeof(BYTE),sizeof(DWORD),sizeof(LONG));
 
    dst=imrotate(src,30);
-   // save("F:\\myproject\\LiteCV\\picture\\lena.bmp",&dst);
+   save("F:\\myproject\\LiteCV\\picture\\lena.bmp",&dst);
    show(&dst);
-   // destory(&dst);
+   destory(&dst);
    destory(&src);
    return 0; 
 }
