@@ -591,5 +591,9 @@ void ShowbmpImage(Mat* mat)
    printf("%s\n",cmd);
    system(cmd);
 }
+#endif 
+
+#ifdef ARM_LINUX
+
 
 #endif 

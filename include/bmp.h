@@ -30,6 +30,8 @@ Log: 11.3 Yueyang
  Mat    (*copy)      (Mat mat);
  void   (*destory)   (Mat* mat);
  Mat    (*create) (u8* filepath,u16 width,u16 height,u8 type);
+
+
 //检查路径是否合法
 int CheckbmpFilePath(char *filepath);
 //读BMP文件头
@@ -61,7 +63,8 @@ Mat bmpcopy(Mat mat);
 //析构函数
 void bmpdestory(Mat* mat);
 
-#endif _INCLUDED
+
+#endif 
 
 
 

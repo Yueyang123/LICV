@@ -21,7 +21,6 @@ void PointSwap(u8* inaddr,u8* outaddr)
     *(inaddr+2)=*(outaddr+2);
 }
 
-
 Mat imrotate(Mat mat,int Angle)
 {
     u8* inaddr;
