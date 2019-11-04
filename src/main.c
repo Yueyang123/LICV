@@ -64,7 +64,7 @@ int main()
 {
      Mat src;
      Mat_Init();
-      src=load("..\\picture\\horse.bmp");
+      src=load("..\\picture\\hole.bmp");
     // src=load("..\\picture\\hole.bmp");
    //  save("..\\picture\\test.bmp",&src);
    //  PrintbmpFileHeader(&src.bmf);
