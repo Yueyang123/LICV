@@ -64,7 +64,7 @@ int main()
 {
      Mat src;
      Mat_Init();
-      src=load("..\\picture\\hole.bmp");
+       src=load("..\\picture\\hole.bmp");
     // src=load("..\\picture\\hole.bmp");
    //  save("..\\picture\\test.bmp",&src);
    //  PrintbmpFileHeader(&src.bmf);
@@ -72,10 +72,12 @@ int main()
    // show(&dst);
    // destory(&dst);
    // destory(&src);
-   Mat dst= creatMapMat(src,1000,1000);
-   save("..\\picture\\test.bmp",&dst);
-   destory(&src);
-   destory(&dst);
+     Mat dst= creatMapMat(src,1000,1000);
+     save("..\\picture\\test.bmp",&dst);
+     destory(&src);
+     destory(&dst);
+
+//printf("%d,%d,%d,%d",sizeof(BYTE),sizeof(WORD),sizeof(DWORD),sizeof(LONG));
    return 0; 
 }
 

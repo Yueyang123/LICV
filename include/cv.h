@@ -18,7 +18,7 @@ Log: 11.3 Yueyang
 #define PI                   3.1415926 
 
 
-#define WINDOWS
+#define ARM_LINUX
 
 
 //在不同的平台上一些数据的字长不一样
@@ -58,6 +58,16 @@ typedef unsigned char        BYTE;
 
 #ifdef ARM_LINUX
 
+typedef unsigned short       WORD;
+typedef unsigned long        DWORD;
+typedef long                 LONG;
+typedef unsigned char        BYTE;
+typedef unsigned             char uint8_t;
+typedef unsigned short       int uint16_t;
+typedef unsigned             int uint32_t;
+typedef uint32_t             u32;
+typedef uint16_t             u16;
+typedef uint8_t              u8;
 #endif
 
 #ifdef ARM_NONE

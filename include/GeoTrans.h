@@ -7,7 +7,14 @@ Description: 提供对于图片的几何变换
 Others: 
 Log: 11.3 Yueyang
 *************************************************/
+#include "cv.h"
+#include "bmp.h"
+
 
 Mat imrotate(Mat bmpImg,int Angle);
 
 Mat immove(Mat mat,int dir,int distance);
+
+Mat creatMapMat(Mat src, 
+                 int rows_c,
+                 int cols_c);
