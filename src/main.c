@@ -16,20 +16,22 @@ Log: 11.3 Yueyang
 #include "bmp.h"
 #include "cv.h"
 #include "GeoTrans.h"
-#include "remap.h"
 
 
 
 int main()
 {
-     Mat src;
+     int i;
+     Mat src,dst;
      Mat_Init();
-       src=load("..\\picture\\hole.bmp");
+       src=load("./picture/hole.bmp");
 
-       Mat dst= creatMapMat(src,1000,1000);
-       save("..\\picture\\test.bmp",&dst);
-       destory(&src);
-       destory(&dst);
+for(i=0;i<=100;i++)
+{
+    creatMapMat(src,1000,1000);
+}     
+       save("./picture/test.bmp",&dst);
+
 
 //printf("%d,%d,%d,%d",sizeof(BYTE),sizeof(WORD),sizeof(DWORD),sizeof(LONG));
    return 0; 

@@ -93,15 +93,18 @@ void Mat_Init()
 
 #ifdef ARM_LINUX
 
-#include <sys/stat.h>
-#include <sys/time.h>
-#include <sys/mman.h>
-#include <sys/ioctl.h>
-#include <iostream>
-#include <sys/types.h>
-#include <linux/types.h>
-#include <linux/fb.h>
-#include <linux/videodev2.h>
+void Mat_Init()
+{
+    show=ShowbmpImage;
+    at=bmpat;
+    process=bmpprocess;
+    load=bmpload;
+    save=SaveAsbmpImage;
+    copy=bmpcopy;
+    Li_malloc=malloc;
+    Li_memcpy=memcpy;
+    Li_free=free;
+}
 
 
 #endif

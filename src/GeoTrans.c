@@ -15,6 +15,9 @@ Log: 11.3 Yueyang
 #include <stdio.h>
 #include <math.h>
 
+#define PI   3.1415
+
+
 void PointSwap(u8* inaddr,u8* outaddr)
 {
     *inaddr=*outaddr;
@@ -166,6 +169,7 @@ Mat immove(Mat mat,int dir,int distance)
 //本质上是利用了一个已经拟合好的二次函数近似三角函数
 float fastSin(float x)
 {
+    float y;
     // 限定 x 在 -Pi  到 pi
     while (x < - PI)
     {
@@ -176,11 +180,16 @@ float fastSin(float x)
         x -= (float)(2 * PI);
     }
 
-    const float B = 1.2732f; // 4 / CV_PI;
-    const float C = -0.4053f; // -4 / (CV_PI*CV_PI);
-    float y = B * x + C * x * abs(x);
-    const float P = 0.225f;
-    y = P * (y * abs(y) - y) + y;
+    const float B = 1.2732; // 4 / CV_PI;
+    const float C = -0.4053; // -4 / (CV_PI*CV_PI);
+    if(x>0)
+    {
+    y = B * x + C * x * x;
+    }
+    else
+    {
+     y = -1*B * x + C * x * x;
+    }
     return y;
 }
 
@@ -199,7 +208,7 @@ float fastSin(float x)
  */
 float fastCos(float x)
 {
-    return fastSin(x + 1.570796f);
+    return fastSin(x + 1.5707);
 }
 
 
@@ -213,18 +222,17 @@ Mat creatMapMat(Mat src,
     u8* outaddr;
     int polar_d =src.width;
     double polar_r = polar_d / 2.0;
-    printf("1");
-    dst=create("..\\picture\\test.bmp",cols_c,rows_c,3);
+    dst=copy(src);
 	double delta_r = polar_r / rows_c; //半径因子
 	double delta_t = 2.0*PI / cols_c;  //角度因子
 	double center_polar_x = (polar_d - 1) / 2.0;
 	double center_polar_y = (polar_d - 1) / 2.0;
-    printf("2");
+
     for (i = 0; i < cols_c; i++)
 	{
 		double theta_p = i * delta_t; //方图第i列在圆图对应线的角度
-		double sin_theta = sin(theta_p);
-		double cos_theta = cos(theta_p);
+		double sin_theta = fastSin(theta_p);
+		double cos_theta = fastCos(theta_p);
  
 		for (int j = 0; j < rows_c; j++)
 		{
@@ -240,7 +248,7 @@ Mat creatMapMat(Mat src,
             *(inaddr+1)=*(outaddr+1);
             *(inaddr+2)=*(outaddr+2);
             }
-		}
 	}
+      }
     return dst;
 }
