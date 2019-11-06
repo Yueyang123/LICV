@@ -16,11 +16,11 @@ Log: 11.3 Yueyang
 #define G_MASK   0x00FF00
 #define B_MASK   0xFF0000
 
-void LCD_DrawPoint(u32 x, u32 y,u32 color,struct fb_fix_screeninfo finfo, struct fb_var_screeninfo vinfo, char *pfb)
+void LCD_DrawPoint(u32 x, u32 y,u32 color,struct fb_fix_screeninfo* finfo, struct fb_var_screeninfo* vinfo, char *pfb)
 {
     long int location = 0;
     unsigned char index = 0;
-    location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +(y+vinfo.yoffset) * finfo.line_length;
+    location = (x+vinfo->xoffset) * (vinfo->bits_per_pixel/8) +(y+vinfo->yoffset) * finfo->line_length;
      *(pfb + location) = (color&&R_MASK);
      *(pfb + location + 1) = (color&&G_MASK)>>8;
      *(pfb + location + 2) = (color&&B_MASK)>>16;

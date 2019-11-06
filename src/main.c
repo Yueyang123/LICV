@@ -18,34 +18,82 @@ Log: 11.3 Yueyang
 #include "GeoTrans.h"
 #include "arm_linux_hardpatch.h"
 
+void ShowbmpImage(Mat* mat,struct fb_var_screeninfo vinfo,struct fb_fix_screeninfo finfo,char *fbp)
+{
+
+   int x,y;
+   u8* addr;
+   long int location = 0;
+  for(x=0;x<=mat->width;x++)
+  for(y=0;y<=mat->highth;y++)
+  {
+         addr=at(mat,x,y);
+  
+         location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
+                 (y+vinfo.yoffset) * finfo.line_length;
+         *(fbp + location) =    *(addr); /*  blue */
+         *(fbp + location + 1) =*(addr+1);
+         *(fbp + location + 2) =*(addr+2); /* red */
+         *(fbp + location + 3) = 0x00;
+         
+  }
+}
 
 int main()
 {
-     int i,j;
-     Mat src,dst;
-
+      int x,y;
+      long int location = 0;
+      Mat src,dst;
       int fbfd = 0;
       struct fb_var_screeninfo vinfo;
       struct fb_fix_screeninfo finfo;
-      char *fbp = 0;
-      
+      char *fbp;
+      long int screensize = 0;
       Mat_Init();
+      u8* addr;
+      src=load("./picture/hole.bmp");
+      dst=creatMapMat(src, 500,500);
 
-      Lcd_Init(&vinfo,&finfo,fbp);
+      fbfd = open("/dev/fb0", O_RDWR);
 
-for(i=0;i<=800;i++)
-for(j=0;j<=600;j++)
-      LCD_DrawPoint(i, 
-                    j,
-                    0xFF0000,
-                    &finfo,
-                    &vinfo, 
-                    pfb);
 
-    //   src=load("./picture/hole.bmp");
+        if (!fbfd) {
+                printf("Error: cannot open framebuffer device.\n");
+                exit(1);
+        }
+        printf("The framebuffer device was opened successfully.\n");
+
+        /* Get fixed screen information */
+        if (ioctl(fbfd, FBIOGET_FSCREENINFO, &finfo)) {
+                printf("Error reading fixed information.\n");
+                exit(2);
+        }
+
+        /* Get variable screen information */
+        if (ioctl(fbfd, FBIOGET_VSCREENINFO, &vinfo)) {
+                printf("Error reading variable information.\n");
+                exit(3);
+        }
+    
+        /* Figure out the size of the screen in bytes */
+        screensize = vinfo.xres * vinfo.yres * vinfo.bits_per_pixel / 8;
+        /* Map the device to memory */
+        
+        fbp = (char *)mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED,
+                fbfd, 0);
+        if ((int)fbp == -1)
+        {
+            printf("Error: failed to map framebuffer device to memory.\n"); exit(4);
+        }
+        printf("The framebuffer device was mapped to memory successfully.\n");
+
+
+
+      ShowbmpImage(&dst,vinfo,finfo,fbp);
+     
 
   
-    //    save("./picture/test.bmp",&dst);
+//    save("./picture/test.bmp",&dst);
 
 
 //printf("%d,%d,%d,%d",sizeof(BYTE),sizeof(WORD),sizeof(DWORD),sizeof(LONG));

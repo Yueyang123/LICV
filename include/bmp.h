@@ -46,7 +46,7 @@ void PrintbmpPixelData(BYTE *imgData,int width,int height,int bitCount);
 //提供一个MAT的结构体将其存储为BMP文件
 int SaveAsbmpImage(char *filepath,Mat* mat);
 //图片显示 注意在不同的硬件平台上需要重写这个函数
-void ShowbmpImage(Mat* mat);
+
 //加载BMP图片，并返回一个MAT结构体
 Mat bmpload(char *filepath);
 //对于图片的每一个像素分别操作
@@ -58,7 +58,7 @@ Mat bmpcopy(Mat mat);
 //析构函数
 void bmpdestory(Mat* mat);
 
-void Lcd_Init(struct fb_var_screeninfo* vinfo,struct fb_fix_screeninfo* finfo,char *fbp);
+
 
 #endif 
 

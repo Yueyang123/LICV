@@ -231,8 +231,8 @@ Mat creatMapMat(Mat src,
     for (i = 0; i < cols_c; i++)
 	{
 		double theta_p = i * delta_t; //方图第i列在圆图对应线的角度
-		double sin_theta = fastSin(theta_p);
-		double cos_theta = fastCos(theta_p);
+		double sin_theta = sin(theta_p);
+		double cos_theta = cos(theta_p);
  
 		for (int j = 0; j < rows_c; j++)
 		{
