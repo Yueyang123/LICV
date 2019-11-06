@@ -16,21 +16,36 @@ Log: 11.3 Yueyang
 #include "bmp.h"
 #include "cv.h"
 #include "GeoTrans.h"
-
+#include "arm_linux_hardpatch.h"
 
 
 int main()
 {
-     int i;
+     int i,j;
      Mat src,dst;
-     Mat_Init();
-       src=load("./picture/hole.bmp");
 
-for(i=0;i<=100;i++)
-{
-    creatMapMat(src,1000,1000);
-}     
-       save("./picture/test.bmp",&dst);
+      int fbfd = 0;
+      struct fb_var_screeninfo vinfo;
+      struct fb_fix_screeninfo finfo;
+      char *fbp = 0;
+      
+      Mat_Init();
+
+      Lcd_Init(&vinfo,&finfo,fbp);
+
+for(i=0;i<=800;i++)
+for(j=0;j<=600;j++)
+      LCD_DrawPoint(i, 
+                    j,
+                    0xFF0000,
+                    &finfo,
+                    &vinfo, 
+                    pfb);
+
+    //   src=load("./picture/hole.bmp");
+
+  
+    //    save("./picture/test.bmp",&dst);
 
 
 //printf("%d,%d,%d,%d",sizeof(BYTE),sizeof(WORD),sizeof(DWORD),sizeof(LONG));

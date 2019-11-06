@@ -58,6 +58,7 @@ Mat bmpcopy(Mat mat);
 //析构函数
 void bmpdestory(Mat* mat);
 
+void Lcd_Init(struct fb_var_screeninfo* vinfo,struct fb_fix_screeninfo* finfo,char *fbp);
 
 #endif 
 
