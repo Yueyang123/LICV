@@ -12,6 +12,15 @@ Log: 11.3 Yueyang
 
 #ifdef ARM_LINUX
 
+#include<sys/types.h>
+#include<sys/stat.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <linux/fb.h>
+#include <sys/mman.h>
+#include <stdlib.h>
+#include <string.h>
 
 void LCD_DrawPoint(u32 x, u32 y,u32 color,struct fb_fix_screeninfo finfo, struct fb_var_screeninfo vinfo, char *pfb);
 

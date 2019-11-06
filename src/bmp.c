@@ -595,15 +595,6 @@ void ShowbmpImage(Mat* mat)
 
 #ifdef ARM_LINUX
 
-#include<sys/types.h>
-#include<sys/stat.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <linux/fb.h>
-#include <sys/mman.h>
-#include <stdlib.h>
-#include <string.h>
 
 //在系统级初始化LCD
 void Lcd_Init(struct fb_var_screeninfo* vinfo,struct* fb_fix_screeninfo finfo,char *fbp)
