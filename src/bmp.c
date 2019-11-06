@@ -608,6 +608,46 @@ void ShowbmpImage(Mat* mat)
 //在系统级初始化LCD
 void Lcd_Init(struct fb_var_screeninfo* vinfo,struct* fb_fix_screeninfo finfo,char *fbp)
 {
+ long int screensize = 0;
+ fbfd = open("/dev/fb0", O_RDWR);
+        if (!fbfd) {
+                printf("Error: cannot open framebuffer device.\n");
+                exit(1);
+        }
+        printf("The framebuffer device was opened successfully.\n");
+
+        /* Get fixed screen information */
+        if (ioctl(fbfd, FBIOGET_FSCREENINFO, &finfo)) {
+                printf("Error reading fixed information.\n");
+                exit(2);
+        }
+
+        /* Get variable screen information */
+        if (ioctl(fbfd, FBIOGET_VSCREENINFO, &vinfo)) {
+                printf("Error reading variable information.\n");
+                exit(3);
+        }
+        printf("vinfo.xres_virtual : %d , vinfo.yres_virtual : %d\n",vinfo.xres_virtual, vinfo.yres_virtual);
+        printf("vinfo.xres=%d\n",vinfo.xres);
+        printf("vinfo.yres=%d\n",vinfo.yres);
+        printf("vinfo.bits_per_bits=%d\n",vinfo.bits_per_pixel);
+        printf("vinfo.xoffset=%d\n",vinfo.xoffset);
+        printf("vinfo.yoffset=%d\n",vinfo.yoffset);
+        printf("finfo.line_length=%d\n",finfo.line_length);
+        
+        /* Figure out the size of the screen in bytes */
+        screensize = vinfo.xres * vinfo.yres * vinfo.bits_per_pixel / 8;
+        /* Map the device to memory */
+        
+        fbp = (char *)mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED,
+                fbfd, 0);
+        if ((int)fbp == -1)
+        {
+            printf("Error: failed to map framebuffer device to memory.\n"); exit(4);
+        }
+        printf("The framebuffer device was mapped to memory successfully.\n");
+
+        memset(fbp,0,screensize);
 
 
 }
