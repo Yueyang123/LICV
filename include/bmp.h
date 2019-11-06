@@ -14,11 +14,6 @@ Log: 11.3 Yueyang
 #include "Mat.h"
 
 //通配指针提供，跨平台主要的实现方式
- int    (*filewrite) (const void *  _Str,int _Size,int _Count,void *  _File);
- int    (*fileread)  (void * _DstBuf,int _ElementSize,int _Count,void * _File);
- void * (*fileopen)  (const char *  _Filename,const char *  _Mode) ;
- int    (*fileseek)  (void *_File,long _Offset,int _Origin);
- int    (*fileclose) (void *_File);
  void   (*Li_free)   (void *_Memory);
  void * (*Li_malloc) (size_t _Size);
  void * (*Li_memcpy) (void * _Dst,const void * _Src,size_t _Size);

@@ -427,96 +427,96 @@ int SaveAsbmpImage(char *filepath,Mat* mat)
       pal[i].rgbRed=i;
    }
 
-   if(filewrite(&mat->bmf.bfType,sizeof(WORD),1,fp)!=1)
+   if(fwrite(&mat->bmf.bfType,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not write bfType in the file header.\n");
       fclose(fp);
    }
 
-   if(filewrite(&mat->bmf.bfSize,sizeof(DWORD),1,fp)!=1)
+   if(fwrite(&mat->bmf.bfSize,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write bfSize in the file header.\n");
       fclose(fp);
    }
 
-   if(filewrite(&mat->bmf.bfReserved1,sizeof(WORD),1,fp)!=1)
+   if(fwrite(&mat->bmf.bfReserved1,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not write bfReserved1 in the file header.\n");
       fclose(fp);
    }
 
-   if(filewrite(&mat->bmf.bfReserved2,sizeof(WORD),1,fp)!=1)
+   if(fwrite(&mat->bmf.bfReserved2,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not write bfReserved2 in the file header.\n");
       fclose(fp);
    }
 
-   if(filewrite(&mat->bmf.bfOffBits,sizeof(DWORD),1,fp)!=1)
+   if(fwrite(&mat->bmf.bfOffBits,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write bfOffBits in the file header.\n");
       fclose(fp);
    }
-   if(filewrite(&mat->bmi.biSize,sizeof(DWORD),1,fp)!=1)
+   if(fwrite(&mat->bmi.biSize,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write biSize in the info header.\n");
       fclose(fp);
    }
 
-   if(filewrite(&mat->bmi.biWidth,sizeof(LONG),1,fp)!=1)
+   if(fwrite(&mat->bmi.biWidth,sizeof(LONG),1,fp)!=1)
    {
       printf("Can not write biWidth in the info header.\n");
       fclose(fp);
    }
 
-   if(filewrite(&mat->bmi.biHeight,sizeof(LONG),1,fp)!=1)
+   if(fwrite(&mat->bmi.biHeight,sizeof(LONG),1,fp)!=1)
    {
       printf("Can not write biHeight in the info header.\n");
       fclose(fp);
    }
 
-   if(filewrite(&mat->bmi.biPlanes,sizeof(WORD),1,fp)!=1)
+   if(fwrite(&mat->bmi.biPlanes,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not write biPlanes in the info header.\n");
       fclose(fp);
    }
 
-   if(filewrite(&mat->bmi.biBitCount,sizeof(WORD),1,fp)!=1)
+   if(fwrite(&mat->bmi.biBitCount,sizeof(WORD),1,fp)!=1)
    {
       printf("Can not write biBitCount in the info header.\n");
       fclose(fp);
    }
 
-   if(filewrite(&mat->bmi.biCompression,sizeof(DWORD),1,fp)!=1)
+   if(fwrite(&mat->bmi.biCompression,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write biCompression in the info header.\n");
       fclose(fp);
    }
 
-   if(filewrite(&mat->bmi.biSizeImage,sizeof(DWORD),1,fp)!=1)
+   if(fwrite(&mat->bmi.biSizeImage,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write biSizeImage in the info header.\n");
       fclose(fp);
    }
 
-   if(filewrite(&mat->bmi.biXPelsPerMeter,sizeof(LONG),1,fp)!=1)
+   if(fwrite(&mat->bmi.biXPelsPerMeter,sizeof(LONG),1,fp)!=1)
    {
       printf("Can not write biXPelsPerMeter in the info header.\n");
       fclose(fp);
    }
 
-   if(filewrite(&mat->bmi.biYPelsPerMeter,sizeof(LONG),1,fp)!=1)
+   if(fwrite(&mat->bmi.biYPelsPerMeter,sizeof(LONG),1,fp)!=1)
    {
       printf("Can not write biYPelsPerMeter in the info header.\n");
       fclose(fp);
    }
 
-   if(filewrite(&mat->bmi.biClrUsed,sizeof(DWORD),1,fp)!=1)
+   if(fwrite(&mat->bmi.biClrUsed,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write biClrUsed in the info header.\n");
       fclose(fp);
    }
 
-   if(filewrite(&mat->bmi.biClrImportant,sizeof(DWORD),1,fp)!=1)
+   if(fwrite(&mat->bmi.biClrImportant,sizeof(DWORD),1,fp)!=1)
    {
       printf("Can not write biClrImportant in the info header.\n");
       fclose(fp);
@@ -524,14 +524,14 @@ int SaveAsbmpImage(char *filepath,Mat* mat)
 
    if(mat->bmi.biBitCount==8)
    {
-      if(filewrite(pal,sizeof(RGBQUAD),256,fp)!=256)
+      if(fwrite(pal,sizeof(RGBQUAD),256,fp)!=256)
       {
       printf("Error: can not write the color palette.\n");
       fclose(fp);
       }
    }
 
-   if(filewrite(mat->imgData,height*dwLineBytes,1,fp)!=1)
+   if(fwrite(mat->imgData,height*dwLineBytes,1,fp)!=1)
    {
       printf("Error: can not write the pixel data.\n");
       fclose(fp);
@@ -595,5 +595,34 @@ void ShowbmpImage(Mat* mat)
 
 #ifdef ARM_LINUX
 
+#include<sys/types.h>
+#include<sys/stat.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <linux/fb.h>
+#include <sys/mman.h>
+#include <stdlib.h>
+#include <string.h>
 
+//在系统级初始化LCD
+void Lcd_Init(struct fb_var_screeninfo* vinfo,struct* fb_fix_screeninfo finfo,char *fbp)
+{
+
+
+}
+
+
+void ShowbmpImage(Mat* mat)
+{
+
+   int i,j;
+
+  for(i=0;i<=mat->width;i++)
+  for(j=0;j<=mat->highth;j++)
+  {
+
+
+  }
+}
 #endif 
