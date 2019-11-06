@@ -18,27 +18,6 @@ Log: 11.3 Yueyang
 #include "GeoTrans.h"
 #include "arm_linux_hardpatch.h"
 
-void ShowbmpImage(Mat* mat,struct fb_var_screeninfo vinfo,struct fb_fix_screeninfo finfo,char *fbp)
-{
-
-   int x,y;
-   u8* addr;
-   long int location = 0;
-  for(x=0;x<=mat->width;x++)
-  for(y=0;y<=mat->highth;y++)
-  {
-         addr=at(mat,x,y);
-  
-         location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
-                 (y+vinfo.yoffset) * finfo.line_length;
-         *(fbp + location) =    *(addr); /*  blue */
-         *(fbp + location + 1) =*(addr+1);
-         *(fbp + location + 2) =*(addr+2); /* red */
-         *(fbp + location + 3) = 0x00;
-         
-  }
-}
-
 int main()
 {
       int x,y;
@@ -89,7 +68,7 @@ int main()
 
 
 
-      ShowbmpImage(&dst,vinfo,finfo,fbp);
+      ARM_ShowbmpImage(&dst,vinfo,finfo,fbp);
      
 
   

@@ -58,7 +58,7 @@ Mat bmpcopy(Mat mat);
 //析构函数
 void bmpdestory(Mat* mat);
 
-
+void ARM_ShowbmpImage(Mat* mat,struct fb_var_screeninfo vinfo,struct fb_fix_screeninfo finfo,char *fbp);
 
 #endif 
 
