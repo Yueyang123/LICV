@@ -107,3 +107,36 @@ float* CDFProcess(u8* buf,int length)
    return result;
 }
 
+
+//对图像进行直方图均衡化处理
+Mat EqualizeHistogram(Mat src)
+{
+   int i;
+   float Max,Min;
+   float sum[256];
+   Mat out;
+   u8* buf=malloc(src.width*src.highth*sizeof(BYTE));
+   Mat dst=GetGray(src,buf) ;
+   float* data=CDFProcess(buf,src.width*src.highth);
+    //找到原图灰度值中的最大值和最小值 
+    for(i=0;i<=255;i++)
+    {
+        if(*(buf+i)>Max)
+        {
+            Max=*(data+i);
+        }
+         if(*(buf+i)<Min)
+        {
+            Min=*(data+i);
+        }
+    }
+
+    sum[0]=*data;
+    for(i=1;i<=255;i++)
+    {
+       sum[i]=sum[i-1]+*(data+i);
+    }
+
+    
+
+}

@@ -23,18 +23,19 @@ int main()
 {
      Mat src;
      Mat_Init();
-     src=load("..\\picture\\hole.bmp");
+     src=load("..\\picture\\WHU2.bmp");
+
     u8* buf;
     buf=malloc(src.width*src.highth*sizeof(BYTE));
     Mat dst=GetGray(src,buf) ;
     float* data=CDFProcess(buf,src.width*src.highth);
     Mat cdf=DrawCDF(data,255,500,500);
-      save("..\\picture\\test.bmp",&dst);
-      save("..\\picture\\CDF.bmp",&cdf);
-      show(&dst);
-      show(&cdf);
-      destory(&src);
-      destory(&dst);
+     save("..\\picture\\test.bmp",&dst);
+     save("..\\picture\\CDF.bmp",&cdf);
+     show(&dst);
+     show(&cdf);
+    //   destory(&src);
+    //   destory(&dst);
       return 0; 
 }
 
