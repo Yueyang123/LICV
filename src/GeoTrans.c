@@ -51,8 +51,8 @@ Mat imrotate(Mat mat,int Angle)
 			{
 				after_i = i;
 				after_j = j;
-				pre_i = (int)(cos((double)angle) * after_i - sin((double)angle) * after_j) + mat.width/2-20;
-				pre_j = (int)(sin((double)angle) * after_i + cos((double)angle) * after_j)-120;
+				pre_i = (int)(cos((double)angle) * after_i - sin((double)angle) * after_j) + mat.width/2-60;
+				pre_j = (int)(sin((double)angle) * after_i + cos((double)angle) * after_j)-80;
 
                 inaddr=at(&out,after_i,after_j);
                 outaddr=at(&mat,pre_i,pre_j);

@@ -23,19 +23,16 @@ int main()
 {
      Mat src;
      Mat_Init();
-     src=load("..\\picture\\WHU2.bmp");
+     src=load("..\\picture\\WHU1.bmp");
 
-    u8* buf;
-    buf=malloc(src.width*src.highth*sizeof(BYTE));
-    Mat dst=GetGray(src,buf) ;
-    float* data=CDFProcess(buf,src.width*src.highth);
-    Mat cdf=DrawCDF(data,255,500,500);
+     Mat dst=MatReshape(src,300,900);
+
      save("..\\picture\\test.bmp",&dst);
-     save("..\\picture\\CDF.bmp",&cdf);
+
      show(&dst);
-     show(&cdf);
+
     //   destory(&src);
-    //   destory(&dst);
+     destory(&dst);
       return 0; 
 }
 
