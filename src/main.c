@@ -23,9 +23,9 @@ int main()
 {
      Mat src;
      Mat_Init();
-     src=load("..\\picture\\WHU1.bmp");
+     src=load("..\\picture\\hole.bmp");
 
-     Mat dst=MatReshape(src,300,900);
+     Mat dst=dst=creatMapMat(src, 500,500,PI/4);
 
      save("..\\picture\\test.bmp",&dst);
 
