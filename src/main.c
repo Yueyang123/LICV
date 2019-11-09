@@ -21,18 +21,23 @@ Log: 11.3 Yueyang
 
 int main()
 {
-     Mat src;
+     Mat src,dst,CDF;
      Mat_Init();
-     src=load("..\\picture\\hole.bmp");
+     u8* inaddr;
+     int x,y;
+     src=load("..\\picture\\WHU1.bmp");
+      u8* buf=malloc(src.width*src.highth*sizeof(BYTE));  
+      dst=MatReshape(src,500,500);
+      dst=EqualizeHistogram(dst);
 
-     Mat dst=dst=creatMapMat(src, 500,500,PI/4);
+      save("..\\picture\\test1.bmp",&dst);
+      show(&dst);
+      GetGray(dst,buf);
+      float* data=CDFProcess(buf,dst.width*dst.highth);
+      CDF=DrawCDF(data,240,500,500);
+      save("..\\picture\\CDF2.bmp",&CDF);
+      show(&CDF);
 
-     save("..\\picture\\test.bmp",&dst);
-
-     show(&dst);
-
-    //   destory(&src);
-     destory(&dst);
       return 0; 
 }
 

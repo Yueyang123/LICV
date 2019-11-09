@@ -9,6 +9,8 @@ Log: 11.8 Yueyang
 *************************************************/
 
 #include "PointOr.h"
+#include "BasicGui.h"
+#include "bmp.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -111,32 +113,55 @@ float* CDFProcess(u8* buf,int length)
 //对图像进行直方图均衡化处理
 Mat EqualizeHistogram(Mat src)
 {
-   int i;
-   float Max,Min;
+   int i,x,y;
+   u8 temp;
+   u16 Max,Min;
    float sum[256];
-   Mat out;
+   u8 out[256];//对于源灰度值产生进行新的映射表
+   Mat CDF1,CDF2;
    u8* buf=malloc(src.width*src.highth*sizeof(BYTE));
    Mat dst=GetGray(src,buf) ;
+   Mat OUTPUT=copy(dst);
+   u8* inaddr;
+   memset(out,0,256);
+   //进行原图的灰度直方图显示
+   save("..\\picture\\test.bmp",&dst);
+   show(&dst);
    float* data=CDFProcess(buf,src.width*src.highth);
+   CDF1=DrawCDF(data,255,500,500);
+   save("..\\picture\\CDF1.bmp",&CDF1);
+   show(&CDF1);
     //找到原图灰度值中的最大值和最小值 
-    for(i=0;i<=255;i++)
+    //一般而言应该是0-255
+    for(i=1;i<dst.width*dst.highth;i++)
     {
         if(*(buf+i)>Max)
         {
-            Max=*(data+i);
+            Max=(u16)(*(buf+i));
         }
          if(*(buf+i)<Min)
         {
-            Min=*(data+i);
+            Min=(u16)(*(buf+i));
         }
+       
     }
 
+    //计算累计概率和
     sum[0]=*data;
     for(i=1;i<=255;i++)
     {
        sum[i]=sum[i-1]+*(data+i);
+       out[i]=(u8)(sum[i]*(Max-Min));//获得一张新的灰度值表
     }
 
-    
-
+   for(x=0;x<OUTPUT.width;x++)
+   for(y=0;y<OUTPUT.highth;y++)
+   {
+        inaddr=at(&OUTPUT,x,y);
+        temp=*inaddr;
+       *(inaddr)=out[temp];
+       *(inaddr+1)=out[temp];
+       *(inaddr+2)=out[temp];
+   }
+   return OUTPUT;
 }
