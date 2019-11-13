@@ -82,7 +82,7 @@ typedef struct
  Mat    (*copy)      (Mat* mat);
  void   (*destory)   (Mat* mat);
  Mat    (*create)    (u8* filepath,u16 width,u16 height,u8 type);
-
+ Mat    (*reshape)   (Mat src,u32 cols_c,int rows_c);
 
 void Mat_INIT();
 Mat MatCreate(u8* filepath,u16 width,u16 height,u8 type);

@@ -27,8 +27,9 @@ int main()
      u8* inaddr;
      int x,y;
      src=load("..\\picture\\WHU1.bmp");
-
-     show(&src);
+      dst=reshape(src,100,100);
+      save("..\\picture\\test.bmp",&dst);
+      show(&dst);
       return 0; 
 }
 

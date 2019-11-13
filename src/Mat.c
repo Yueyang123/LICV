@@ -10,6 +10,7 @@ Log: 11.3 Yueyang
 
 #include "bmp.h"
 #include "cv.h"
+#include "GeoTrans.h"
 #include <string.h>
 #include <stdlib.h>
 
@@ -54,6 +55,7 @@ void Mat_Init()
     destory=bmpdestory;
     copy=bmpcopy;
     create=MatCreate;
+    reshape=MatReshape;
 }
 
 
@@ -71,7 +73,8 @@ void Mat_Init()
     load=bmpload;
     save=SaveAsbmpImage;
     copy=bmpcopy;
-
+    create=MatCreate;
+    reshape=MatReshape;
 }
 
 
@@ -79,15 +82,7 @@ void Mat_Init()
 
 #ifdef ARM_LINUX
 
-#include <sys/stat.h>
-#include <sys/time.h>
-#include <sys/mman.h>
-#include <sys/ioctl.h>
-#include <iostream>
-#include <sys/types.h>
-#include <linux/types.h>
-#include <linux/fb.h>
-#include <linux/videodev2.h>
+
 
 
 #endif

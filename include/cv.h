@@ -61,6 +61,16 @@ typedef unsigned char        BYTE;
 
 #ifdef ARM_LINUX
 
+#include <sys/stat.h>
+#include <sys/time.h>
+#include <sys/mman.h>
+#include <sys/ioctl.h>
+#include <iostream>
+#include <sys/types.h>
+#include <linux/types.h>
+#include <linux/fb.h>
+#include <linux/videodev2.h>
+
 #endif
 
 #ifdef ARM_NONE

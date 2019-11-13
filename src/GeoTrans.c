@@ -21,6 +21,21 @@ void PointSwap(u8* inaddr,u8* outaddr)
     *(inaddr+2)=*(outaddr+2);
 }
 
+
+/**
+ * @fn      Mat imrotate(Mat mat,int Angle)
+ *
+ * @brief   逆时针旋转一个固定的角度
+ *          Angle (0-360)
+ *
+ * @author  Yueyang
+ * @date    2019/11/13
+ *
+ * @param   mat   The picture type
+ *          Angle the angle you need you rotate(0-360)
+ * 
+ * @return  A picture type
+ */
 Mat imrotate(Mat mat,int Angle)
 {
     u8* inaddr;
@@ -63,7 +78,21 @@ Mat imrotate(Mat mat,int Angle)
         return out;
 } 
 
-
+/**
+ * @fn      Mat immove(Mat mat,int dir,int distance)
+ *
+ * @brief   向指定方向移动图片（图片保持原大小）
+ *          超出图片原本大小的部分将被舍去
+ *
+ * @author  Yueyang
+ * @date    2019/11/13
+ *
+ * @param   mat      The picture type
+ *          dir      The direction you want to move
+ *          distance (pix)是像素值
+ * 
+ * @return  A picture type
+ */
 Mat immove(Mat mat,int dir,int distance)
 {
     u8* inaddr;
@@ -146,7 +175,23 @@ Mat immove(Mat mat,int dir,int distance)
 
 }
 
-
+/**
+ * @fn      Mat creatMapMat(Mat src, 
+                            int rows_c,
+                            int cols_c,
+                            double startdelta)
+ *
+ * @brief   鱼眼图展开算法
+ *
+ * @author  Yueyang
+ * @date    2019/11/13
+ *
+ * @param   src         The picture type
+ *          rows_c      图像的高度对应y
+ *          cols_c      图像的宽度对应x
+ *          startdelta  图像展开的其实坐标（0-2PI）
+ * @return  A picture type
+ */
 Mat creatMapMat(Mat src, 
                  int rows_c,
                  int cols_c,
@@ -190,7 +235,20 @@ Mat creatMapMat(Mat src,
     return dst;
 }
 
-
+/**
+ * @fn      Mat MatReshape(Mat src,u32 cols_c,int rows_c)
+ *
+ * @brief   图像调整大小的函数
+ *          该过程没有插值处理
+ *
+ * @author  Yueyang
+ * @date    2019/11/13
+ *
+ * @param   src         The picture type
+ *          rows_c      图像的高度对应y
+ *          cols_c      图像的宽度对应x
+ * @return  A picture type
+ */
 //cols横向 ，rows纵向
 Mat MatReshape(Mat src,u32 cols_c,int rows_c)
 {
