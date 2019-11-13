@@ -22,7 +22,6 @@ Log: 11.3 Yueyang
 #define     RGB(r,g,b)     ((u32)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16))) 
 
 
-
 typedef struct 
 { // bmfh
     WORD    bfType;
@@ -62,10 +61,8 @@ typedef struct tagBITMAPINFO
 
 typedef struct
 {
-    //! the number of rows and columns or (-1, -1) when the matrix has more than 2 dimensions
-
-     BITMAPFILEHEADER bmf;
-     BITMAPINFOHEADER bmi;
+    BITMAPFILEHEADER bmf;
+    BITMAPINFOHEADER bmi;
 
     LONG highth, width;
     u8 pictype;
@@ -73,6 +70,19 @@ typedef struct
     BYTE *imgData;
 
 }Mat;
+
+
+
+//通配指针提供，跨平台主要的实现方式
+ void   (*show)      (Mat* mat);
+ u8*    (*at)        (Mat* mat,int width,int highth);
+ int    (*process)   (Mat* mat,int x,int y,u32 color);
+ Mat    (*load)      (char *filepath);
+ int    (*save)      (char *filepath,Mat* mat);
+ Mat    (*copy)      (Mat* mat);
+ void   (*destory)   (Mat* mat);
+ Mat    (*create)    (u8* filepath,u16 width,u16 height,u8 type);
+
 
 void Mat_INIT();
 Mat MatCreate(u8* filepath,u16 width,u16 height,u8 type);

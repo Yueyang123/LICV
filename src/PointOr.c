@@ -24,7 +24,7 @@ Mat GetGray(Mat src,u8* buf)
  u8* inaddr;
  u8* outaddr;
  u32 color,GRAY;
- Mat dst=copy(src);
+ Mat dst=copy(&src);
 
  for(x=0;x<src.width;x++)
  for(y=0;y<src.highth;y++)
@@ -46,7 +46,7 @@ Mat GetBW(Mat src)
  u8* inaddr;
  u8* outaddr;
  u32 color;
- Mat dst=copy(src);
+ Mat dst=copy(&src);
  for(x=0;x<src.width;x++)
  for(y=0;y<src.highth;y++)
  {
@@ -121,7 +121,7 @@ Mat EqualizeHistogram(Mat src)
    Mat CDF1,CDF2;
    u8* buf=malloc(src.width*src.highth*sizeof(BYTE));
    Mat dst=GetGray(src,buf) ;
-   Mat OUTPUT=copy(dst);
+   Mat OUTPUT=copy(&dst);
    u8* inaddr;
    memset(out,0,256);
    //进行原图的灰度直方图显示

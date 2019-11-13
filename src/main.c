@@ -19,6 +19,7 @@ Log: 11.3 Yueyang
 #include "PointOr.h"
 #include "BasicGui.h"
 
+
 int main()
 {
      Mat src,dst,CDF;
@@ -26,18 +27,8 @@ int main()
      u8* inaddr;
      int x,y;
      src=load("..\\picture\\WHU1.bmp");
-      u8* buf=malloc(src.width*src.highth*sizeof(BYTE));  
-      dst=MatReshape(src,500,500);
-      dst=EqualizeHistogram(dst);
 
-      save("..\\picture\\test1.bmp",&dst);
-      show(&dst);
-      GetGray(dst,buf);
-      float* data=CDFProcess(buf,dst.width*dst.highth);
-      CDF=DrawCDF(data,240,500,500);
-      save("..\\picture\\CDF2.bmp",&CDF);
-      show(&CDF);
-
+     show(&src);
       return 0; 
 }
 

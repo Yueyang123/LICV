@@ -527,18 +527,18 @@ int SaveAsbmpImage(char *filepath,Mat* mat)
 
 }
 
-Mat bmpcopy(Mat mat)
+Mat bmpcopy(Mat* mat)
 {
    Mat out;
-   out.bmf=mat.bmf;
-   out.bmi=mat.bmi;
-   out.highth=mat.highth;
-   out.width=mat.width;
-   out.pictype=mat.pictype;
+   out.bmf=mat->bmf;
+   out.bmi=mat->bmi;
+   out.highth=mat->highth;
+   out.width=mat->width;
+   out.pictype=mat->pictype;
    out.PATH=malloc(100);
-   strcpy(out.PATH,mat.PATH);
-   out.imgData=(BYTE*)malloc(mat.highth*mat.width*3);
-   memcpy(out.imgData,mat.imgData,mat.highth*mat.width*3);
+   strcpy(out.PATH,mat->PATH);
+   out.imgData=(BYTE*)malloc(mat->highth*mat->width*3);
+   memcpy(out.imgData,mat->imgData,mat->highth*mat->width*3);
    return out;
 
 }

@@ -13,16 +13,6 @@ Log: 11.3 Yueyang
 #include "stdio.h"
 #include "Mat.h"
 
-//通配指针提供，跨平台主要的实现方式
- void   (*show)      (Mat* mat);
- u8*    (*at)        (Mat* mat,int width,int highth);
- int    (*process)   (Mat* mat,int x,int y,u32 color);
- Mat    (*load)      (char *filepath);
- int    (*save)      (char *filepath,Mat* mat);
- Mat    (*copy)      (Mat mat);
- void   (*destory)   (Mat* mat);
- Mat    (*create) (u8* filepath,u16 width,u16 height,u8 type);
-
 
 //检查路径是否合法
 int CheckbmpFilePath(char *filepath);
@@ -51,7 +41,7 @@ int bmpprocess(Mat* mat,int width,int highth,u32 color);
 //获取BMP某个像素所在的地址
 u8* bmpat(Mat* mat,int width,int highth);
 //BMP拷贝函数
-Mat bmpcopy(Mat mat);
+Mat bmpcopy(Mat* mat);
 //析构函数
 void bmpdestory(Mat* mat);
 

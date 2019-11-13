@@ -17,8 +17,8 @@ Log: 11.3 Yueyang
 #define true                 1  
 #define PI                   3.1415926 
 
-#define GUI_RED     0x0000FF
-#define GUI_BLUE    0xFF0000
+#define GUI_RED       0x0000FF
+#define GUI_BLUE      0xFF0000
 #define GUI_GREEN     0x00FF00
 
 #define WINDOWS
