@@ -1,6 +1,6 @@
 ﻿/*************************************************
 Copyright © Yueyang Co. Ltd. 2019-2029. All rights reserved.
-File name: cv.h
+File name: main.c
 Author： Yueyang
 Version: V1.0
 Description: LiteCV运行主函数
@@ -18,19 +18,23 @@ Log: 11.3 Yueyang
 #include "Mat.h"
 #include "GeoTrans.h"
 #include "PointOr.h"
+#include "MathOr.h"
 #include "BasicGui.h"
 
 
 int main()
 {
-     Mat src,dst,CDF;
+     Mat src1,src2,dst;
      Mat_Init;
      u8* inaddr;
      int x,y;
-     src=load("..\\picture\\WHU1.bmp");
-      dst=reshape(src,1000,1000);
-      save("..\\picture\\test.bmp",&dst);
-      show(&dst);
+     src1=load("..\\picture\\lena.bmp");
+     src2=load("..\\picture\\lena.bmp");
+     src1=reshape(src1,1000,1000);
+     src2=reshape(src2,1000,1000);
+     dst=Matmean(src1,src2,0,0);
+     save("..\\picture\\test.bmp",&dst);
+     show(&dst);
       return 0; 
 }
 

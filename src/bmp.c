@@ -335,8 +335,12 @@ Mat bmpload(char *filepath)
       printf("Read the info header failed.\n");
       q=1;
      }
+
+   #ifdef DEBUG
      PrintbmpFileHeader(&mat.bmf);
      PrintbmpInfoHeader(&mat.bmi);
+   #endif // DEBUG
+
      mat.highth=mat.bmi.biHeight;
      mat.width=mat.bmi.biWidth;
      bitCount=mat.bmi.biBitCount;
