@@ -13,7 +13,6 @@ Log: 11.3 Yueyang
 #include "stdio.h"
 #include "Mat.h"
 
-
 //检查路径是否合法
 int CheckbmpFilePath(char *filepath);
 //读BMP文件头
@@ -36,14 +35,6 @@ int SaveAsbmpImage(char *filepath,Mat* mat);
 void ShowbmpImage(Mat* mat);
 //加载BMP图片，并返回一个MAT结构体
 Mat bmpload(char *filepath);
-//对于图片的每一个像素分别操作
-int bmpprocess(Mat* mat,int width,int highth,u32 color);
-//获取BMP某个像素所在的地址
-u8* bmpat(Mat* mat,int width,int highth);
-//BMP拷贝函数
-Mat bmpcopy(Mat* mat);
-//析构函数
-void bmpdestory(Mat* mat);
 
 
 #endif 

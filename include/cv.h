@@ -12,6 +12,7 @@ Log: 11.3 Yueyang
 #define _CV_H
 
 
+
 #define bool                 u8
 #define false                0
 #define true                 1  
@@ -76,6 +77,7 @@ typedef unsigned char        BYTE;
 #ifdef ARM_NONE
 
 #endif
+
 
 
 #endif // !CV_H

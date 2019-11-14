@@ -9,9 +9,10 @@ Log: 11.3 Yueyang
 *************************************************/
 
 #ifndef Mat_H
-#define MAT_H
+#define Mat_H
 
 #include "cv.h"
+
 
 #define BMP_8    0X01
 #define BMP_565  0x02
@@ -20,6 +21,7 @@ Log: 11.3 Yueyang
 #define JPEG     0X05
 
 #define     RGB(r,g,b)     ((u32)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16))) 
+
 
 
 typedef struct 
@@ -72,11 +74,23 @@ typedef struct
 }Mat;
 
 
+//对于图片的每一个像素分别操作
+int Matchange(Mat* mat,int width,int highth,u32 color);
+//获取某个像素所在的地址
+u8* Matat(Mat* mat,int width,int highth);
+//BMP拷贝函数
+Mat Matcopy(Mat* mat);
+//析构函数
+void Matdestory(Mat* mat);
+//矩阵类创建函数
+Mat MatCreate(u8* filepath,u16 width,u16 height,u8 type);
+//图像类重新调整大小的函数
+Mat MatReshape(Mat src,u32 cols_c,int rows_c);
 
 //通配指针提供，跨平台主要的实现方式
  void   (*show)      (Mat* mat);
  u8*    (*at)        (Mat* mat,int width,int highth);
- int    (*process)   (Mat* mat,int x,int y,u32 color);
+ int    (*change)    (Mat* mat,int x,int y,u32 color);
  Mat    (*load)      (char *filepath);
  int    (*save)      (char *filepath,Mat* mat);
  Mat    (*copy)      (Mat* mat);
@@ -84,8 +98,20 @@ typedef struct
  Mat    (*create)    (u8* filepath,u16 width,u16 height,u8 type);
  Mat    (*reshape)   (Mat src,u32 cols_c,int rows_c);
 
-void Mat_INIT();
-Mat MatCreate(u8* filepath,u16 width,u16 height,u8 type);
+
+//对于常见函数进行指针赋值
+#define Mat_Init   \
+        show=ShowbmpImage;\
+        at=Matat;\
+        change=Matchange;\
+        load=bmpload;\
+        save=SaveAsbmpImage;\
+        destory=Matdestory;\
+        copy=Matcopy;\
+        create=MatCreate;\
+        reshape=MatReshape
+
+
 
 
 #endif // !Mat_H

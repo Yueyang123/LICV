@@ -362,29 +362,6 @@ Mat bmpload(char *filepath)
 }
 
 
-int bmpprocess(Mat* mat,int width,int highth,u32 color)
-{
-   u32 offset;
-   u8 R=(u8)(color);
-   u8 G=(u8)(((WORD)(color)) >> 8);
-   u8 B=(u8)((color)>>16);
-   DWORD dwLineBytes=GetLineBytes(mat->width,24);
-   offset=dwLineBytes*(mat->highth-1-highth)+width*3;
-   *(mat->imgData+offset)=R;
-   *(mat->imgData+offset+1)=G;
-   *(mat->imgData+offset+2)=B;
-   return 0;
-}
-
-u8* bmpat(Mat* mat,int width,int highth)
-{
-   u32 offset;
-   DWORD dwLineBytes=GetLineBytes(mat->width,24);
-   offset=dwLineBytes*(mat->highth-1-highth)+width*3;
-   return mat->imgData+offset;
-}
-
-
 int SaveAsbmpImage(char *filepath,Mat* mat)
 {
    FILE *fp;
@@ -525,28 +502,6 @@ int SaveAsbmpImage(char *filepath,Mat* mat)
 
    return 0;
 
-}
-
-Mat bmpcopy(Mat* mat)
-{
-   Mat out;
-   out.bmf=mat->bmf;
-   out.bmi=mat->bmi;
-   out.highth=mat->highth;
-   out.width=mat->width;
-   out.pictype=mat->pictype;
-   out.PATH=malloc(100);
-   strcpy(out.PATH,mat->PATH);
-   out.imgData=(BYTE*)malloc(mat->highth*mat->width*3);
-   memcpy(out.imgData,mat->imgData,mat->highth*mat->width*3);
-   return out;
-
-}
-
-void bmpdestory(Mat* mat)
-{
-   free(mat->PATH);
-   free(mat->imgData);
 }
 
 

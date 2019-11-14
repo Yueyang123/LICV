@@ -43,47 +43,108 @@ Mat MatCreate(u8* filepath,u16 width,u16 height,u8 type)
 
 
 
-#ifdef WINDOWS
-
-void Mat_Init()
+Mat Matcopy(Mat* mat)
 {
-    show=ShowbmpImage;
-    at=bmpat;
-    process=bmpprocess;
-    load=bmpload;
-    save=SaveAsbmpImage;
-    destory=bmpdestory;
-    copy=bmpcopy;
-    create=MatCreate;
-    reshape=MatReshape;
+   Mat out;
+   out.bmf=mat->bmf;
+   out.bmi=mat->bmi;
+   out.highth=mat->highth;
+   out.width=mat->width;
+   out.pictype=mat->pictype;
+   out.PATH=malloc(100);
+   strcpy(out.PATH,mat->PATH);
+   out.imgData=(BYTE*)malloc(mat->highth*mat->width*3);
+   memcpy(out.imgData,mat->imgData,mat->highth*mat->width*3);
+   return out;
+
 }
 
+void Matdestory(Mat* mat)
+{
+   free(mat->PATH);
+   free(mat->imgData);
+}
+
+
+
+int Matchange(Mat* mat,int width,int highth,u32 color)
+{
+   u32 offset;
+   u8 R=(u8)(color);
+   u8 G=(u8)(((WORD)(color)) >> 8);
+   u8 B=(u8)((color)>>16);
+   DWORD dwLineBytes=GetLineBytes(mat->width,24);
+   offset=dwLineBytes*(mat->highth-1-highth)+width*3;
+   *(mat->imgData+offset)=R;
+   *(mat->imgData+offset+1)=G;
+   *(mat->imgData+offset+2)=B;
+   return 0;
+}
+
+u8* Matat(Mat* mat,int width,int highth)
+{
+   u32 offset;
+   DWORD dwLineBytes=GetLineBytes(mat->width,24);
+   offset=dwLineBytes*(mat->highth-1-highth)+width*3;
+   return mat->imgData+offset;
+}
+
+
+
+
+/**
+ * @fn      Mat MatReshape(Mat src,u32 cols_c,int rows_c)
+ *
+ * @brief   图像调整大小的函数
+ *          该过程没有插值处理
+ *
+ * @author  Yueyang
+ * @date    2019/11/13
+ *
+ * @param   src         The picture type
+ *          rows_c      图像的高度对应y
+ *          cols_c      图像的宽度对应x
+ * @return  A picture type
+ */
+//cols横向 ，rows纵向
+Mat MatReshape(Mat src,u32 cols_c,int rows_c)
+{
+   Mat dst;
+   u32 x,y;
+   u8* inaddr;
+   u8* outaddr;
+   double x_fact=(double)cols_c/src.width;
+   double y_fact=(double)rows_c/src.highth;
+
+   printf("(xfact,yfact)=(%f,%f)",x_fact,y_fact);
+
+   dst=create("..\\picture\\test.bmp",cols_c,rows_c,3);
+
+    for(x=0;x<cols_c;x++)
+    for(y=0;y<rows_c;y++)
+    {
+      inaddr=at(&dst,x,y);
+      outaddr=at(&src,(int)x/x_fact,(int)y/y_fact);
+      *inaddr=*outaddr;
+      *(inaddr+1)=*(outaddr+1);
+      *(inaddr+2)=*(outaddr+2);
+    }
+    return dst;
+
+}
+
+
+
+
+#ifdef WINDOWS
 
 #endif
 
-
-
 #ifdef X86_LINUX
-
-void Mat_Init()
-{
-    show=ShowbmpImage;
-    at=bmpat;
-    process=bmpprocess;
-    load=bmpload;
-    save=SaveAsbmpImage;
-    copy=bmpcopy;
-    create=MatCreate;
-    reshape=MatReshape;
-}
-
 
 #endif
 
 #ifdef ARM_LINUX
-
-
-
 
 #endif
 

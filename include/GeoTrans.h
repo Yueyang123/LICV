@@ -14,4 +14,3 @@ Mat immove(Mat mat,int dir,int distance);
 
 Mat creatMapMat(Mat src,  int rows_c, int cols_c,double startdealta);
 
-Mat MatReshape(Mat src,u32 cols_c,int rows_c);

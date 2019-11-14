@@ -15,6 +15,7 @@ Log: 11.3 Yueyang
 
 #include "bmp.h"
 #include "cv.h"
+#include "Mat.h"
 #include "GeoTrans.h"
 #include "PointOr.h"
 #include "BasicGui.h"
@@ -23,11 +24,11 @@ Log: 11.3 Yueyang
 int main()
 {
      Mat src,dst,CDF;
-     Mat_Init();
+     Mat_Init;
      u8* inaddr;
      int x,y;
      src=load("..\\picture\\WHU1.bmp");
-      dst=reshape(src,100,100);
+      dst=reshape(src,1000,1000);
       save("..\\picture\\test.bmp",&dst);
       show(&dst);
       return 0; 
