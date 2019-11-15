@@ -141,14 +141,16 @@ int ReadbmpInfoHeader(char *filepath,BITMAPINFOHEADER *bmih)
    return 0;
 }
 
-
+//注意这里的指针必须已经完成了内存申请
 int ReadbmpPixelData(char *filepath,BYTE *imgData)
 {
    BITMAPINFOHEADER bmih;
    BITMAPFILEHEADER bmfh;
    BYTE *data;
    FILE *fp;
-   int n;
+   u8 R, G, B;
+   u16 pixel;
+   int n,i;
    int width;
    int height;
    int bitCount;
@@ -168,7 +170,7 @@ int ReadbmpPixelData(char *filepath,BYTE *imgData)
    width=bmih.biWidth;
    height=bmih.biHeight;
    bitCount=bmih.biBitCount;
-   dwLineBytes=GetLineBytes(width,bitCount);
+   dwLineBytes=3*width;
 
    data=(BYTE*)malloc(dwLineBytes*height*sizeof(BYTE));
    if(!data)
@@ -183,24 +185,8 @@ int ReadbmpPixelData(char *filepath,BYTE *imgData)
       free(data);
       return -1;
    }
-   if(bitCount==8)
-   {
-      fseek(fp,bmfh.bfOffBits,SEEK_SET);
-   }
-   else if(bitCount==24)
-   {
-      fseek(fp,bmfh.bfOffBits,SEEK_SET);
-   }
-   else if(bitCount==16)
-   {
-      fseek(fp,bmfh.bfOffBits,SEEK_SET);
-   }
-   else
-   {
-      printf("DO NOT SUPPORT THIS KIND OF FILE\n");
-      return -1;
-   }
-   
+   fseek(fp,bmfh.bfOffBits,SEEK_SET);
+
    if(fread(data,dwLineBytes*height*sizeof(BYTE),1,fp)!=1)
    {
       printf("Can not read the pixel data.\n");
@@ -208,7 +194,43 @@ int ReadbmpPixelData(char *filepath,BYTE *imgData)
       fclose(fp);
       return -1;
    }
+   if(bitCount==24)
+   {
    memcpy(imgData,data,dwLineBytes*height*sizeof(BYTE));
+   }
+   else if(bitCount==16)//对于RGB565的图像需要先转化为三色道的形式
+   {
+      for(i=0;i<width*height*2;i++)
+      {
+      pixel=(*data+1)<<8|(*data);
+      R = (pixel&RGB565_R)>>11;
+      G = (pixel&RGB565_G)>>5;
+      B = (pixel&RGB565_B);
+      *(imgData+3*i/2)=B;
+      *(imgData+3*i/2+1)=G;
+      *(imgData+3*i/2+2)=R;
+      }
+   }
+   else if(bitCount==8)//对于8位的图像需要先转化为三色道的形式
+   {
+      for(i=0;i<width*height;i++)
+      {
+      pixel=*(data+i); 
+      printf("%d\n",pixel);
+      R = (u8)(pixel|0x00ff);
+      G = (u8)(pixel|0x00ff);
+      B = (u8)(pixel|0x00ff);
+      *(imgData+3*i/2)=R;
+      *(imgData+3*i/2+1)=G;
+      *(imgData+3*i/2+2)=B;
+      }
+   }
+   else
+   {
+      printf("NO WE DONT SUPPORT THIS KIND OF BMP\n");
+   }
+   
+
    free(data);
    fclose(fp);
    return 0;
@@ -345,7 +367,7 @@ Mat bmpload(char *filepath)
      mat.width=mat.bmi.biWidth;
      bitCount=mat.bmi.biBitCount;
      mat.pictype=mat.bmi.biBitCount/8;
-     dwLineBytes=GetLineBytes(mat.width,bitCount);
+     dwLineBytes=3*mat.width;
      mat.imgData=(BYTE*)malloc(dwLineBytes*(mat.highth)*sizeof(BYTE));
      if(!mat.imgData)
      {
@@ -375,7 +397,7 @@ int SaveAsbmpImage(char *filepath,Mat* mat)
    DWORD dwLineBytes;
    Mat* dst;
    height=mat->bmi.biHeight;
-   dwLineBytes=GetLineBytes(mat->bmi.biWidth,mat->bmi.biBitCount);
+   dwLineBytes=3*mat->width;
    strcpy(mat->PATH,filepath);
    fp=fopen(filepath,"wb");
    if(!fp)
@@ -493,12 +515,18 @@ int SaveAsbmpImage(char *filepath,Mat* mat)
       printf("Error: can not write the color palette.\n");
       fclose(fp);
       }
+      for(i=0;i<mat->width*height;i++)
+      fwrite((mat->imgData+3*i),1,1,fp);
+
    }
 
-   if(fwrite(mat->imgData,height*dwLineBytes,1,fp)!=1)
+   else
    {
-      printf("Error: can not write the pixel data.\n");
-      fclose(fp);
+      if(fwrite(mat->imgData,height*dwLineBytes,1,fp)!=1)
+      {
+         printf("Error: can not write the pixel data.\n");
+         fclose(fp);
+      }
    }
 
    fclose(fp);

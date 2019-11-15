@@ -22,6 +22,11 @@ Log: 11.3 Yueyang
 #define GUI_RED       0x0000FF
 #define GUI_BLUE      0xFF0000
 #define GUI_GREEN     0x00FF00
+#define RGB565_R      0xF800             //the separate RGB value
+#define RGB565_G      0x07E0
+#define RGB565_B      0x001F
+
+
 
 #define WINDOWS
 
