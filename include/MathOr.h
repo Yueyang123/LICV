@@ -8,7 +8,7 @@ Others:
 Log: 11.14 Yueyang
 *************************************************/
 #ifndef MATHOR_H
-#define MATHOR_h
+#define MATHOR_H
 
 #include "Mat.h"
 

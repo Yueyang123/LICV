@@ -20,21 +20,22 @@ Log: 11.3 Yueyang
 #include "PointOr.h"
 #include "MathOr.h"
 #include "BasicGui.h"
-
-
+#include "RGB2HSL.h"
+#include "ColorDec.h"
 int main()
 {
      Mat src1,src2,dst;
      Mat_Init;
      u8* inaddr;
      int x,y;
-     src1=load("..\\picture\\lena8.bmp");
-//      src2=load("..\\picture\\lena.bmp");
-//      src1=reshape(src1,1000,1000);
-//      src2=reshape(src2,1000,1000);
-//      dst=Matmean(src1,src2,0,0);
-     save("..\\picture\\test.bmp",&src1);
-     show(&src1);
+     src1=load("..\\picture\\horse.bmp");
+     src2=reshape(src1,500,500);
+     save("..\\picture\\test.bmp",&src2);
+     show(&src2);
+     dst=ColorDec(src1);
+     save("..\\picture\\test1.bmp",&dst);
+     show(&dst);
+
       return 0; 
 }
 
