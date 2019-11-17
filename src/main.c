@@ -22,6 +22,7 @@ Log: 11.3 Yueyang
 #include "BasicGui.h"
 #include "RGB2HSL.h"
 #include "ColorDec.h"
+
 int main()
 {
      Mat src1,src2,dst;
