@@ -1,8 +1,24 @@
 {
-    "files.associations": {
-        "ctype.h": "c",
-        "math.h": "c",
-        "mat.h": "c",
-        "string.h": "c"
-    }
+    "files.autoSave": "on",
+    "git.path":"G:/LINUXDocument/Git/bin/git",
+    "workbench.iconTheme": "vscode-icons",
+    "vsicons.dontShowNewVersionMessage": true,
+    "c-cpp-flylint.ignoreParseErrors": true,
+    "typescript.disableAutomaticTypeAcquisition": true,
+    "c-cpp-flylint.clang.enable": false,
+    "cppcheck.isEnable": false,
+    "workbench.colorTheme": "Tomorrow Night Blue",
+    "c-cpp-flylint.cppcheck.enable": false,
+    "c-cpp-flylint.flexelint.enable": false,
+    "window.zoomLevel": 1,
+    "editor.renderWhitespace": "all",
+    "editor.renderControlCharacters": true,
+    "git.enableSmartCommit": true,
+    "git.autofetch": true,
+    "code-runner.executorMap": {
+        "c": "cd $dir && gcc -g ./*.c  ./BasicDec/*.c  ./Formatrans/*.c  ./GUI/*.c  ./HardBasic/*.c     ./IO/*.c  ./Mat/*.c  ./PicOr/*.c    -L../lib -I../include -o ../bin/test && ../bin/test -static",
+        },
+        "code-runner.respectShebang": false,
+        "code-runner.runInTerminal": true,
+        "explorer.confirmDelete": false
 }
