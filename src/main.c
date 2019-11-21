@@ -25,13 +25,16 @@ Log: 11.3 Yueyang
 
 int main()
 {
-     Mat src2,dst;
+     Mat dst;
      Mat_Init;
      u8* inaddr;
      int x,y;
-     Mat src1 = read_JPEG_file("..\\picture\\test.bmp","..\\picture\\lena.jpg");
+     Mat src1 = readpng("..\\picture\\test.bmp","..\\picture\\lena.png");
+     Mat src2 = read_JPEG_file("..\\picture\\test1.bmp","..\\picture\\lena.jpg");
      save("..\\picture\\test.bmp",&src1);
+     save("..\\picture\\test1.bmp",&src2);
      show(&src1);
+     show(&src2);
      return 0; 
 }
 

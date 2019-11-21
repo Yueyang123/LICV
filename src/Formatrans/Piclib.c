@@ -21,6 +21,8 @@ Log: 11.21 Yueyang
 #include "jconfig.h"
 #include "jmorecfg.h"
 #include <jpeglib.h>
+#include "png.h"
+#include "pngstruct.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "Mat.h"
@@ -250,4 +252,67 @@ read_JPEG_file(char* dstname,char *filename)
 
   /* And we're done! */
   return dst;
+}
+
+
+
+
+Mat readpng(char* dstname,char* filename)
+{
+
+// 前边几句是扯淡，初始化各种结构
+
+FILE* file = fopen(filename, "rb");
+
+png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+
+png_infop info_ptr = png_create_info_struct(png_ptr);
+
+setjmp(png_jmpbuf(png_ptr));
+
+// 这句很重要
+
+png_init_io(png_ptr, file);
+
+// 读文件了
+
+png_read_png(png_ptr, info_ptr, PNG_TRANSFORM_EXPAND, 0);
+
+// 得到文件的宽高色深
+
+int m_width = png_get_image_width(png_ptr, info_ptr);
+int m_height = png_get_image_height(png_ptr, info_ptr);
+Mat dst=create(dstname,m_width,m_height,3);
+int color_type = png_get_color_type(png_ptr, info_ptr);
+
+int size = m_height * m_width * 3;
+
+int pos = 0;
+
+// row_pointers里边就是传说中的rgba数据了
+
+png_bytep* row_pointers = png_get_rows(png_ptr, info_ptr);
+
+// 拷贝！！注意，如果你读取的png没有A通道，就要3位3位的读。还有就是注意字节对其的问题，最简单的就是别用不能被4整除的宽度就行了。读过你实在想用，就要在这里加上相关的对齐处理。
+
+for(int i = 0; i < m_height; i++)
+{
+   for(int j = 0; j < (4 * m_width); j += 4)
+   {
+    dst.imgData[pos++] = row_pointers[i][j + 2]; // blue
+    dst.imgData[pos++] = row_pointers[i][j + 1]; // green
+    dst.imgData[pos++] = row_pointers[i][j];   // red
+    // bgra[pos++] = row_pointers[i][j + 3]; // alpha
+   }
+}
+// 好了，你可以用这个数据作任何的事情了。。。把它显示出来或者打印出来都行。
+
+
+
+png_destroy_read_struct(&png_ptr, &info_ptr, 0);
+
+fclose(file);
+
+return dst;
+
 }
