@@ -12,7 +12,6 @@ Log: 11.3 Yueyang
 #include <stdlib.h>
 #include <string.h>
 #include <malloc.h>
-
 #include "bmp.h"
 #include "cv.h"
 #include "Mat.h"
@@ -23,21 +22,17 @@ Log: 11.3 Yueyang
 #include "RGB2HSL.h"
 #include "ColorDec.h"
 
+
 int main()
 {
      Mat src1,src2,dst;
      Mat_Init;
      u8* inaddr;
      int x,y;
-     src1=load("..\\picture\\horse.bmp");
-     src2=reshape(src1,500,500);
-     save("..\\picture\\test.bmp",&src2);
-     show(&src2);
-     dst=ColorDec(src1);
-     save("..\\picture\\test1.bmp",&dst);
-     show(&dst);
-
-      return 0; 
+     src1=load("..\\picture\\lena8.bmp");
+     save("..\\picture\\test.bmp",&src1);
+     show(&src1);
+     return 0; 
 }
 
  

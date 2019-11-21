@@ -61,6 +61,8 @@ typedef struct tagBITMAPINFO
 }BITMAPINFO;
 
 
+//以BMP为基础的图片数据类型
+//读取其他中类的图片需要先将其转化
 typedef struct
 {
     BITMAPFILEHEADER bmf;
@@ -105,7 +107,7 @@ Mat MatReshape(Mat src,u32 cols_c,int rows_c);
         at=Matat;\
         change=Matchange;\
         load=bmpload;\
-        save=SaveAsbmpImage;\
+        save=SaveAsbmp24Image;\
         destory=Matdestory;\
         copy=Matcopy;\
         create=MatCreate;\

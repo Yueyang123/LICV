@@ -30,7 +30,7 @@ LONG GetLineBytes(int imgWidth,int bitCount);
 //打印位图数据信息
 void PrintbmpPixelData(BYTE *imgData,int width,int height,int bitCount);
 //提供一个MAT的结构体将其存储为BMP文件
-int SaveAsbmpImage(char *filepath,Mat* mat);
+int SaveAsbmp24Image(char *filepath,Mat* mat);
 //图片显示 注意在不同的硬件平台上需要重写这个函数
 void ShowbmpImage(Mat* mat);
 //加载BMP图片，并返回一个MAT结构体
