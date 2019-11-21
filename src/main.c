@@ -21,15 +21,15 @@ Log: 11.3 Yueyang
 #include "BasicGui.h"
 #include "RGB2HSL.h"
 #include "ColorDec.h"
-
+#include "Piclib.h"
 
 int main()
 {
-     Mat src1,src2,dst;
+     Mat src2,dst;
      Mat_Init;
      u8* inaddr;
      int x,y;
-     src1=load("..\\picture\\lena8.bmp");
+     Mat src1 = read_JPEG_file("..\\picture\\test.bmp","..\\picture\\lena.jpg");
      save("..\\picture\\test.bmp",&src1);
      show(&src1);
      return 0; 

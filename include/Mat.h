@@ -22,7 +22,9 @@ Log: 11.3 Yueyang
 
 #define     RGB(r,g,b)     ((u32)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16))) 
 
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct 
 { // bmfh
@@ -75,6 +77,9 @@ typedef struct
 
 }Mat;
 
+#ifdef __cplusplus
+}
+#endif
 
 //对于图片的每一个像素分别操作
 int Matchange(Mat* mat,int width,int highth,u32 color);
