@@ -1,4 +1,4 @@
-/*************************************************
+﻿/*************************************************
 Copyright © Yueyang Co. Ltd. 2019-2029. All rights reserved.
 File name: Piclib.c
 Author： Yueyang
@@ -8,6 +8,7 @@ Others: jpeg  png
 依赖于libjpeg libpng 
 Log: 11.21 Yueyang
 *************************************************/
+
 
 #include <malloc.h>
 #include "string.h"
@@ -218,7 +219,7 @@ read_JPEG_file(char* dstname,char *filename)
   buffer =malloc(row_stride*1);
  
 
-   Mat dst=create(dstname,cinfo.output_width,cinfo.output_height,3);
+   Mat dst=Create(dstname,cinfo.output_width,cinfo.output_height,3);
    u32 temp=0;
 
    while (cinfo.output_scanline < cinfo.output_height) {
@@ -282,7 +283,7 @@ png_read_png(png_ptr, info_ptr, PNG_TRANSFORM_EXPAND, 0);
 
 int m_width = png_get_image_width(png_ptr, info_ptr);
 int m_height = png_get_image_height(png_ptr, info_ptr);
-Mat dst=create(dstname,m_width,m_height,3);
+Mat dst=Create(dstname,m_width,m_height,3);
 int color_type = png_get_color_type(png_ptr, info_ptr);
 
 int size = m_height * m_width * 3;

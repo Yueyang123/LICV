@@ -14,6 +14,12 @@ Log: 11.3 Yueyang
 #include <string.h>
 #include <stdlib.h>
 
+Mat Matlaload(u8* dstname ,u8 * filename)
+{
+   
+
+}
+
 //创建一个空白的图片类
 Mat MatCreate(u8* filepath,u16 width,u16 height,u8 type)
 {
@@ -116,7 +122,7 @@ Mat MatReshape(Mat src,u32 cols_c,int rows_c)
 
    printf("(xfact,yfact)=(%f,%f)",x_fact,y_fact);
 
-   dst=create("..\\picture\\test.bmp",cols_c,rows_c,3);
+   dst=Create("..\\picture\\test.bmp",cols_c,rows_c,3);
 
     for(x=0;x<cols_c;x++)
     for(y=0;y<rows_c;y++)

@@ -41,10 +41,7 @@ Mat imrotate(Mat mat,int Angle)
     u8* inaddr;
     u8* outaddr;
     double angle;
-    int step = 0;
-	int Rot_step = 0;
     int i, j;
-    int midX_pre,midY_pre,midX_aft,midY_aft;
     int pre_i,pre_j,after_i,after_j;
     angle = 1.0 * Angle * PI / 180;
     Mat out=copy(&mat);
@@ -98,7 +95,7 @@ Mat immove(Mat mat,int dir,int distance)
     u8* inaddr;
     u8* outaddr;
     Mat out=copy(&mat);
-    int i,j,x,y;
+    int i,j;
 
         for ( i = 0; i < mat.width; i++)
         {
@@ -198,13 +195,12 @@ Mat creatMapMat(Mat src,
                  double startdelta)
 {
     Mat dst;
-    int i,j;
     u8* inaddr;
     u8* outaddr;
+    int i,j;
     int polar_d =src.width;
     double polar_r = polar_d / 2.0;
-    printf("1");
-    dst=create("..\\picture\\test.bmp",cols_c,rows_c,3);
+    dst=Create("..\\picture\\test.bmp",cols_c,rows_c,3);
 	double delta_r = polar_r / rows_c; //半径因子
 	double delta_t = 2.0*PI / cols_c;  //角度因子
 	double center_polar_x = (polar_d - 1) / 2.0;
@@ -216,7 +212,7 @@ Mat creatMapMat(Mat src,
 		double sin_theta = sin(theta_p);
 		double cos_theta = cos(theta_p);
  
-		for (int j = 0; j < rows_c; j++)
+        for (j = 0; j < rows_c; j++)
 		{
 			double temp_r = j * delta_r; //方图第j行在圆图上对应的半径长度
  

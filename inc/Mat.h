@@ -95,27 +95,27 @@ Mat MatCreate(u8* filepath,u16 width,u16 height,u8 type);
 Mat MatReshape(Mat src,u32 cols_c,int rows_c);
 
 //通配指针提供，跨平台主要的实现方式
- void   (*show)      (Mat* mat);
+ void   (*Show)      (Mat* mat);
  u8*    (*at)        (Mat* mat,int width,int highth);
  int    (*change)    (Mat* mat,int x,int y,u32 color);
- Mat    (*load)      (char *filepath);
+ Mat    (*Load)      (char *filepath);
  int    (*save)      (char *filepath,Mat* mat);
  Mat    (*copy)      (Mat* mat);
  void   (*destory)   (Mat* mat);
- Mat    (*create)    (u8* filepath,u16 width,u16 height,u8 type);
+ Mat    (*Create)    (u8* filepath,u16 width,u16 height,u8 type);
  Mat    (*reshape)   (Mat src,u32 cols_c,int rows_c);
 
 
 //对于常见函数进行指针赋值
 #define Mat_Init   \
-        show=ShowbmpImage;\
+        Show=ShowbmpImage;\
         at=Matat;\
         change=Matchange;\
-        load=bmpload;\
+        Load=bmpload;\
         save=SaveAsbmp24Image;\
         destory=Matdestory;\
         copy=Matcopy;\
-        create=MatCreate;\
+        Create=MatCreate;\
         reshape=MatReshape
 
 

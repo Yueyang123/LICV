@@ -1,4 +1,4 @@
-/*************************************************
+﻿/*************************************************
 Copyright © Yueyang Co. Ltd. 2019-2029. All rights reserved.
 File name:PointOr.c
 Author： Yueyang
@@ -20,10 +20,10 @@ Log: 11.8 Yueyang
 //对于灰度值的计算这里采用均值算法
 Mat GetGray(Mat src,u8* buf)
 {
- u32 x,y;
+ int x,y;
  u8* inaddr;
  u8* outaddr;
- u32 color,GRAY;
+ u32 GRAY;
  Mat dst=copy(&src);
 
  for(x=0;x<src.width;x++)
@@ -42,7 +42,7 @@ Mat GetGray(Mat src,u8* buf)
 
 Mat GetBW(Mat src)
 {
- u32 x,y;
+ int x,y;
  u8* inaddr;
  u8* outaddr;
  u32 color;
@@ -85,7 +85,7 @@ void ShowCDF(float* CDF)
 //返回一个浮点数组概率向量
 float* CDFProcess(u8* buf,int length)
 {
-   u32 i=0;
+   int i=0;
    float* buffer;//存储0-255的数值出现的次数
    float* result;
    //将申请的地址全部初始化为0
@@ -118,7 +118,7 @@ Mat EqualizeHistogram(Mat src)
    u16 Max,Min;
    float sum[256];
    u8 out[256];//对于源灰度值产生进行新的映射表
-   Mat CDF1,CDF2;
+   Mat CDF1;
    u8* buf=malloc(src.width*src.highth*sizeof(BYTE));
    Mat dst=GetGray(src,buf) ;
    Mat OUTPUT=copy(&dst);
@@ -126,11 +126,11 @@ Mat EqualizeHistogram(Mat src)
    memset(out,0,256);
    //进行原图的灰度直方图显示
    save("..\\picture\\test.bmp",&dst);
-   show(&dst);
+   Show(&dst);
    float* data=CDFProcess(buf,src.width*src.highth);
    CDF1=DrawCDF(data,255,500,500);
    save("..\\picture\\CDF1.bmp",&CDF1);
-   show(&CDF1);
+   Show(&CDF1);
     //找到原图灰度值中的最大值和最小值 
     //一般而言应该是0-255
     for(i=1;i<dst.width*dst.highth;i++)

@@ -33,8 +33,8 @@ int main()
      Mat src2 = read_JPEG_file("..\\picture\\test1.bmp","..\\picture\\lena.jpg");
      save("..\\picture\\test.bmp",&src1);
      save("..\\picture\\test1.bmp",&src2);
-     show(&src1);
-     show(&src2);
+     Show(&src1);
+     Show(&src2);
      return 0; 
 }
 

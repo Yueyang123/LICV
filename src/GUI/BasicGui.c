@@ -1,4 +1,4 @@
-/*************************************************
+﻿/*************************************************
 Copyright © Yueyang Co. Ltd. 2019-2029. All rights reserved.
 File name:BasicGui.c
 Author： Yueyang
@@ -149,7 +149,7 @@ Mat DrawCDF(float* result,u32 length,u32 cols,u32 rows)
     float Pos=(float)cols/length;//两直方图在图片中的间隔
     float y_fact;//使直方图在高度上适配的比例因子
     u32 i,x;
-    Mat out=create("..\\picture\\CDF.bmp",cols,rows,3);
+    Mat out=Create("..\\picture\\CDF.bmp",cols,rows,3);
     for(i=1;i<=length-1;i++)
     {
         if(*(result+i)>Max)

@@ -1,4 +1,4 @@
-/*************************************************
+﻿/*************************************************
 Copyright © Yueyang Co. Ltd. 2019-2029. All rights reserved.
 File name:PointOr.c
 Author： Yueyang
@@ -8,7 +8,7 @@ Others:
 Log: 11.13 Yueyang
 *************************************************/
 
-#include "RGB2HSL.h"
+#include <RGB2HSL.h>
 #include "cv.h"
 
 //图像检测的相关阈值

@@ -16,7 +16,7 @@
     "git.enableSmartCommit": true,
     "git.autofetch": true,
     "code-runner.executorMap": {
-        "c": "cd $dir && gcc -g ./*.c  ./BasicDec/*.c  ./Formatrans/*.c  ./GUI/*.c  ./HardBasic/*.c     ./IO/*.c  ./Mat/*.c  ./PicOr/*.c   -L../lib/lib* -I../include -o ../bin/test && ../bin/test -static",
+        "c": "cd $dir && gcc -g ./*.c  ./BasicDec/*.c  ./Formatrans/*.c  ./GUI/*.c  ./HardBasic/*.c     ./IO/*.c  ./Mat/*.c  ./PicOr/*.c   -L../lib/lib* -I../inc -o ../bin/test && ../bin/test -static",
         },
         "code-runner.respectShebang": false,
         "code-runner.runInTerminal": true,
@@ -26,6 +26,7 @@
             "JPEG.C": "cpp",
             "jpeglib.h": "c",
             "malloc.h": "c",
-            "jmorecfg.h": "c"
+            "jmorecfg.h": "c",
+            "cv.h": "c"
         }
 }

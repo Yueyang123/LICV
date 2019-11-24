@@ -3,8 +3,7 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/include",
-                "${workspaceFolder}/include/jpeg_include"
+                "${workspaceFolder}/inc"
             ],
             "defines": [
                 "_DEBUG",
