@@ -34,7 +34,7 @@ int SaveAsbmp24Image(char *filepath,Mat* mat);
 //图片显示 注意在不同的硬件平台上需要重写这个函数
 void ShowbmpImage(Mat* mat);
 //加载BMP图片，并返回一个MAT结构体
-Mat bmpload(char *filepath);
+Mat bmpload(char* dstname,char *filepath);
 
 
 #endif 

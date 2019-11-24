@@ -383,7 +383,7 @@ void PrintbmpPixelData(BYTE *imgData,int width,int height,int bitCount)
 }
 
 
-Mat bmpload(char *filepath)
+Mat bmpload(char* dstname,char *filepath)
 {
     int i,q;
     int bitCount;
@@ -392,7 +392,7 @@ Mat bmpload(char *filepath)
     i=CheckbmpFilePath(filepath);
     i=0;
     mat.PATH=malloc(100);
-    strcpy(mat.PATH,filepath);
+    strcpy(mat.PATH,dstname);
 
    
      i=ReadbmpFileHeader(filepath,&mat.bmf);

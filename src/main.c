@@ -29,8 +29,8 @@ int main()
      Mat_Init;
      u8* inaddr;
      int x,y;
-     Mat src1 = readpng("..\\picture\\test.bmp","..\\picture\\lena.png");
-     Mat src2 = read_JPEG_file("..\\picture\\test1.bmp","..\\picture\\lena.jpg");
+     Mat src1 =Load("..\\picture\\test.bmp","..\\picture\\lena.png");
+     Mat src2 =Load("..\\picture\\test1.bmp","..\\picture\\lena.jpg");
      save("..\\picture\\test.bmp",&src1);
      save("..\\picture\\test1.bmp",&src2);
      Show(&src1);

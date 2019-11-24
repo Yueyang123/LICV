@@ -11,12 +11,35 @@ Log: 11.3 Yueyang
 #include "bmp.h"
 #include "cv.h"
 #include "GeoTrans.h"
+#include "Piclib.h"
 #include <string.h>
 #include <stdlib.h>
 
-Mat Matlaload(u8* dstname ,u8 * filename)
+Mat Matload(u8* dstname ,u8 * filename)
 {
-   
+    int len=strlen(filename)/sizeof(char);
+    char ext[3];
+    Mat dst;
+   if(filename[0]!='\"')
+   {
+      strncpy(ext,&filename[len-3],3);
+      if((ext[0]=='b' && ext[1]=='m' && ext[2]=='p'))
+      {
+      printf("The file is  a bmp file.\n");
+      dst=bmpload(dstname,filename);
+      }
+      else if((ext[0]=='j' && ext[1]=='p' && ext[2]=='g'))
+      {
+      printf("The file is  a jpg file.\n");
+      dst=read_JPEG_file(dstname,filename);
+      }
+      else if ((ext[0]=='p' && ext[1]=='n' && ext[2]=='g'))
+      {
+       printf("The file is  a jpg file.\n");
+       dst=read_PNG_file(dstname,filename);
+      }
+      return dst;
+   }
 
 }
 

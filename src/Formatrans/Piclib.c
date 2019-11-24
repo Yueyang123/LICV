@@ -40,8 +40,7 @@ Log: 11.21 Yueyang
 // extern int image_width;         /* Number of columns in image */
 
 
-GLOBAL(void)
-write_JPEG_file(char *filename, int quality,JSAMPLE *image_buffer,int image_height,int image_width)
+void write_JPEG_file(char *filename, int quality,JSAMPLE *image_buffer,int image_height,int image_width)
 {
   struct jpeg_compress_struct cinfo;
   struct jpeg_error_mgr jerr;
@@ -258,7 +257,7 @@ read_JPEG_file(char* dstname,char *filename)
 
 
 
-Mat readpng(char* dstname,char* filename)
+Mat read_PNG_file(char* dstname,char* filename)
 {
 
 // 前边几句是扯淡，初始化各种结构
