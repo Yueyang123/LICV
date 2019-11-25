@@ -80,7 +80,7 @@ Mat ColorDec(Mat src)
     int x,y;
     u8* inaddr,*outaddr;
     u8 temp;
-    Mat dst=copy(&src);
+    Mat dst=Copy(&src);
     for(y=0;y<src.width;y++)
     for(x=0;x<src.highth;x++)
     {

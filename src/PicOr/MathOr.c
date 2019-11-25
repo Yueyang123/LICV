@@ -1,4 +1,4 @@
-/*************************************************
+﻿/*************************************************
 Copyright © Yueyang Co. Ltd. 2019-2029. All rights reserved.
 File name:PointOr.c
 Author： Yueyang
@@ -57,7 +57,7 @@ Mat Matplus(Mat src1,Mat src2,int x,int y)
     u8* inaddr;
     u8 *addr1,*addr2;
     u32 temp;
-    Mat dst= copy(&src1);
+    Mat dst= Copy(&src1);
     for(i=x;i<dst.width;i++)
     for(j=y;j<dst.highth;j++)
     {
@@ -98,7 +98,7 @@ Mat Matmean(Mat src1,Mat src2,int x,int y)
     u8* inaddr;
     u8 *addr1,*addr2;
     u32 temp;
-    Mat dst= copy(&src1);
+    Mat dst= Copy(&src1);
     for(i=x;i<dst.width;i++)
     for(j=y;j<dst.highth;j++)
     {
@@ -139,7 +139,7 @@ Mat Matminus(Mat src1,Mat src2,int x,int y)
     u8* inaddr;
     u8 *addr1,*addr2;
     u32 temp;
-    Mat dst= copy(&src1);
+    Mat dst= Copy(&src1);
     for(i=x;i<dst.width;i++)
     for(j=y;j<dst.highth;j++)
     {
@@ -180,7 +180,7 @@ Mat Matmultiply(Mat src1,Mat src2,int x,int y)
     u8* inaddr;
     u8 *addr1,*addr2;
     u32 temp;
-    Mat dst= copy(&src1);
+    Mat dst= Copy(&src1);
     for(i=x;i<dst.width;i++)
     for(j=y;j<dst.highth;j++)
     {
@@ -220,7 +220,7 @@ Mat Matdivide(Mat src1,Mat src2,int x,int y)
     u8* inaddr;
     u8 *addr1,*addr2;
     u32 temp;
-    Mat dst= copy(&src1);
+    Mat dst= Copy(&src1);
     for(i=x;i<dst.width;i++)
     for(j=y;j<dst.highth;j++)
     {

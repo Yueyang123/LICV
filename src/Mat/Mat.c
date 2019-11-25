@@ -15,7 +15,7 @@ Log: 11.3 Yueyang
 #include <string.h>
 #include <stdlib.h>
 
-Mat Matload(u8* dstname ,u8 * filename)
+Mat Matload(char* dstname ,char * filename)
 {
     int len=strlen(filename)/sizeof(char);
     char ext[3];

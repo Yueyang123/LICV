@@ -94,14 +94,14 @@ Mat MatCreate(u8* filepath,u16 width,u16 height,u8 type);
 //图像类重新调整大小的函数
 Mat MatReshape(Mat src,u32 cols_c,int rows_c);
 
-Mat Matload(u8* dstname ,u8 * filename);
+Mat Matload(char* dstname ,char * filename);
 //通配指针提供，跨平台主要的实现方式
  void   (*Show)      (Mat* mat);
  u8*    (*at)        (Mat* mat,int width,int highth);
  int    (*change)    (Mat* mat,int x,int y,u32 color);
  Mat    (*Load)      (char* dstname ,char * filename);
  int    (*save)      (char *filepath,Mat* mat);
- Mat    (*copy)      (Mat* mat);
+ Mat    (*Copy)      (Mat* mat);
  void   (*destory)   (Mat* mat);
  Mat    (*Create)    (u8* filepath,u16 width,u16 height,u8 type);
  Mat    (*reshape)   (Mat src,u32 cols_c,int rows_c);
@@ -115,7 +115,7 @@ Mat Matload(u8* dstname ,u8 * filename);
         Load=Matload;\
         save=SaveAsbmp24Image;\
         destory=Matdestory;\
-        copy=Matcopy;\
+        Copy=Matcopy;\
         Create=MatCreate;\
         reshape=MatReshape
 

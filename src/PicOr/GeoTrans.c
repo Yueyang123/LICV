@@ -44,7 +44,7 @@ Mat imrotate(Mat mat,int Angle)
     int i, j;
     int pre_i,pre_j,after_i,after_j;
     angle = 1.0 * Angle * PI / 180;
-    Mat out=copy(&mat);
+    Mat out=Copy(&mat);
 
         for ( i = 0; i < mat.width; i++)
         {
@@ -94,7 +94,7 @@ Mat immove(Mat mat,int dir,int distance)
 {
     u8* inaddr;
     u8* outaddr;
-    Mat out=copy(&mat);
+    Mat out=Copy(&mat);
     int i,j;
 
         for ( i = 0; i < mat.width; i++)
