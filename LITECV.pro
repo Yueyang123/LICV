@@ -5,6 +5,9 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += multimedia
+
+QT       += multimediawidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,7 +28,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         src/main.cpp \
-        Qt/widget.cpp \
         src/BasicDec/ColorDec.c \
         src/Formatrans/Piclib.c \
         src/Formatrans/RGB2HSL.c \
@@ -36,13 +38,14 @@ SOURCES += \
         src/PicOr/GeoTrans.c \
         src/PicOr/MathOr.c \
         src/PicOr/PointOr.c \
+    Qt/Camera/camera.cpp \
+    Qt/Linwin.cpp
 
 
 INCLUDEPATH +=  \
               inc
 
 HEADERS += \
-    inc/widget.h \
     inc/arm_linux_hardpatch.h \
     inc/BasicGui.h \
     inc/bmp.h \
@@ -72,7 +75,6 @@ HEADERS += \
    inc/RGB2HSL.h \
    inc/trees.h \
    inc/turbojpeg.h \
-   inc/widget.h \
     inc/zconf.h \
     inc/zlib.h \
     inc/zutil.h \
@@ -105,12 +107,13 @@ HEADERS += \
     inc/RGB2HSL.h \
     inc/trees.h \
     inc/turbojpeg.h \
-    inc/widget.h \
     inc/zconf.h \
     inc/zlib.h \
-    inc/zutil.h
+    inc/zutil.h \
+    inc/camera.h \
+    inc/Linwin.h
 
 LIBS        +=F:\LITECV\LiteCV\lib\lib*
 
 FORMS += \
-        Qt/widget.ui
+    Qt/Linwin.ui

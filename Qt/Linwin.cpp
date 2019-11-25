@@ -1,41 +1,29 @@
-﻿#include "widget.h"
-#include "ui_widget.h"
+﻿#include "ui_Linwin.h"
 #include <string>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
+#include "Linwin.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <malloc.h>
 #include "bmp.h"
-#include "cv.h"
 #include "Mat.h"
-#include "Piclib.h"
-#include "GeoTrans.h"
 #ifdef __cplusplus
 }
 #endif
 
 using namespace  std;
 
-Widget::Widget(QWidget *parent) :
+Linwin::Linwin(char* filepath,QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::Widget)
-{
-    ui->setupUi(this);
-
-}
-
-Widget::Widget(char* filepath,QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Widget)
+    ui(new Ui::Linwin)
 {
     BYTE* inaddr, *outaddr;
     ui->setupUi(this);
     Mat_Init;
-    string path="E:\\QTProject\\LITECV\\picture\\test.bmp";
+    string path="F:\LiteCV\LITECV\picture\test.bmp";
     Mat src1 = Load((char*)path.data(),filepath);
     BYTE* temp=new BYTE[3*src1.width*src1.highth];
     //BGR转RGB存储
@@ -59,7 +47,7 @@ Widget::Widget(char* filepath,QWidget *parent) :
 }
 
 
-Widget::~Widget()
+Linwin::~Linwin()
 {
     delete ui;
 }
