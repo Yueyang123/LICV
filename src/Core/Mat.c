@@ -35,7 +35,7 @@ Mat Matload(char* dstname ,char * filename)
       }
       else if ((ext[0]=='p' && ext[1]=='n' && ext[2]=='g'))
       {
-       printf("The file is  a jpg file.\n");
+       printf("The file is  a png file.\n");
        dst=read_PNG_file(dstname,filename);
       }
       return dst;

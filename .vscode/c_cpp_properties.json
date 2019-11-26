@@ -3,7 +3,10 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/inc"
+                "${workspaceFolder}/inc",
+                "${workspaceFolder}/inc/Core_inc",
+                "${workspaceFolder}/inc/Piclib_inc",
+                "${workspaceFolder}/inc/Qt_inc"
             ],
             "defines": [
                 "_DEBUG",
