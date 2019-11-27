@@ -27,93 +27,65 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        src/main.cpp \
-        src/BasicDec/ColorDec.c \
-        src/Formatrans/Piclib.c \
-        src/Formatrans/RGB2HSL.c \
-        src/GUI/BasicGui.c \
-        src/Hardbasic/arm_linux_hardpatch.c \
-        src/IO/bmp.c \
-        src/Mat/Mat.c \
-        src/PicOr/GeoTrans.c \
-        src/PicOr/MathOr.c \
-        src/PicOr/PointOr.c \
-    Qt/Camera/camera.cpp \
-    Qt/Linwin.cpp
+    src/Core/arm_linux_hardpatch.c \
+    src/Core/BasicGui.c \
+    src/Core/bmp.c \
+    src/Core/ColorDec.c \
+    src/Core/GeoTrans.c \
+    src/Core/Mat.c \
+    src/Core/MathOr.c \
+    src/Core/Piclib.c \
+    src/Core/PointOr.c \
+    src/Core/RGB2HSL.c \
+    src/main.cpp \
+    Qt/Qwin/Linwin.cpp \
+    Qt/Camera/camera.cpp
+
 
 
 INCLUDEPATH +=  \
-              inc
+              inc  \
+              inc/Qt_inc  \
+              inc/Piclib_inc   \
+              inc/Core_inc
 
 HEADERS += \
-    inc/arm_linux_hardpatch.h \
-    inc/BasicGui.h \
-    inc/bmp.h \
-    inc/ColorDec.h \
-    inc/cv.h \
-    inc/font.h \
-    inc/GeoTrans.h \
-    inc/inffast.h \
-    inc/inffixed.h \
-    inc/inflate.h \
-    inc/inftrees.h \
-   inc/jconfig.h \
-   inc/jerror.h \
-   inc/jmorecfg.h \
-   inc/jpeglib.h \
-   inc/Mat.h \
-   inc/MathOr.h \
-   inc/Piclib.h \
-   inc/png.h \
-   inc/pngconf.h \
-   inc/pngdebug.h \
-   inc/pnginfo.h \
-   inc/pnglibconf.h \
-   inc/pngpriv.h \
-   inc/pngstruct.h \
-   inc/PointOr.h \
-   inc/RGB2HSL.h \
-   inc/trees.h \
-   inc/turbojpeg.h \
-    inc/zconf.h \
-    inc/zlib.h \
-    inc/zutil.h \
-    inc/arm_linux_hardpatch.h \
-    inc/BasicGui.h \
-    inc/bmp.h \
-    inc/ColorDec.h \
-    inc/cv.h \
-    inc/font.h \
-    inc/GeoTrans.h \
-    inc/inffast.h \
-    inc/inffixed.h \
-    inc/inflate.h \
-    inc/inftrees.h \
-    inc/jconfig.h \
-    inc/jerror.h \
-    inc/jmorecfg.h \
-    inc/jpeglib.h \
-    inc/Mat.h \
-    inc/MathOr.h \
-    inc/Piclib.h \
-    inc/png.h \
-    inc/pngconf.h \
-    inc/pngdebug.h \
-    inc/pnginfo.h \
-    inc/pnglibconf.h \
-    inc/pngpriv.h \
-    inc/pngstruct.h \
-    inc/PointOr.h \
-    inc/RGB2HSL.h \
-    inc/trees.h \
-    inc/turbojpeg.h \
-    inc/zconf.h \
-    inc/zlib.h \
-    inc/zutil.h \
-    inc/camera.h \
-    inc/Linwin.h
+    inc/Core_inc/arm_linux_hardpatch.h \
+    inc/Core_inc/BasicGui.h \
+    inc/Core_inc/ColorDec.h \
+    inc/Core_inc/cv.h \
+    inc/Core_inc/font.h \
+    inc/Core_inc/GeoTrans.h \
+    inc/Core_inc/Mat.h \
+    inc/Core_inc/MathOr.h \
+    inc/Core_inc/PointOr.h \
+    inc/Piclib_inc/bmp.h \
+    inc/Piclib_inc/inffast.h \
+    inc/Piclib_inc/inffixed.h \
+    inc/Piclib_inc/inflate.h \
+    inc/Piclib_inc/inftrees.h \
+    inc/Piclib_inc/jconfig.h \
+    inc/Piclib_inc/jerror.h \
+    inc/Piclib_inc/jmorecfg.h \
+    inc/Piclib_inc/jpeglib.h \
+    inc/Piclib_inc/Piclib.h \
+    inc/Piclib_inc/png.h \
+    inc/Piclib_inc/pngconf.h \
+    inc/Piclib_inc/pngdebug.h \
+    inc/Piclib_inc/pnginfo.h \
+    inc/Piclib_inc/pnglibconf.h \
+    inc/Piclib_inc/pngpriv.h \
+    inc/Piclib_inc/pngstruct.h \
+    inc/Piclib_inc/RGB2HSL.h \
+    inc/Piclib_inc/trees.h \
+    inc/Piclib_inc/turbojpeg.h \
+    inc/Piclib_inc/zconf.h \
+    inc/Piclib_inc/zlib.h \
+    inc/Piclib_inc/zutil.h \
+    inc/Qt_inc/camera.h \
+    inc/Qt_inc/Linwin.h
 
 LIBS        +=F:\LITECV\LiteCV\lib\lib*
 
 FORMS += \
-    Qt/Linwin.ui
+    Qt/Qwin/Linwin.ui
