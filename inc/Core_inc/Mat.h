@@ -77,6 +77,19 @@ typedef struct
 
 }Mat;
 
+typedef struct tagPOINT
+{
+    u32 x;
+    u32 y;
+}POINT;
+
+static inline POINT GetPoint(u32 a,u32 b) 
+{
+    POINT p;
+     p.x=a;
+     p.y=b;
+     return p;
+}
 #ifdef __cplusplus
 }
 #endif
@@ -94,10 +107,10 @@ Mat MatCreate(u8* filepath,u16 width,u16 height,u8 type);
 //图像类重新调整大小的函数
 Mat MatReshape(Mat src,u32 cols_c,int rows_c);
 //图片显示 注意在不同的硬件平台上需要重写这个函数
-void ShowImage(Mat* mat);
+void ShowImage(Mat* mat,char* winname);
 Mat Matload(char* dstname ,char * filename);
 //通配指针提供，跨平台主要的实现方式
- void   (*Show)      (Mat* mat);
+ void   (*Show)      (Mat* mat,char* winname);
  u8*    (*at)        (Mat* mat,int width,int highth);
  int    (*change)    (Mat* mat,int x,int y,u32 color);
  Mat    (*Load)      (char* dstname ,char * filename);

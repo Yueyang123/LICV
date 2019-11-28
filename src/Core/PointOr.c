@@ -126,11 +126,11 @@ Mat EqualizeHistogram(Mat src)
    memset(out,0,256);
    //进行原图的灰度直方图显示
    save("..\\picture\\test.bmp",&dst);
-   Show(&dst);
+   Show(&dst,"win1");
    float* data=CDFProcess(buf,src.width*src.highth);
    CDF1=DrawCDF(data,255,500,500);
    save("..\\picture\\CDF1.bmp",&CDF1);
-   Show(&CDF1);
+   Show(&CDF1,"win2");
     //找到原图灰度值中的最大值和最小值 
     //一般而言应该是0-255
     for(i=1;i<dst.width*dst.highth;i++)
