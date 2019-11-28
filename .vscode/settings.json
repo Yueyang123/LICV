@@ -16,7 +16,8 @@
     "git.enableSmartCommit": true,
     "git.autofetch": true,
     "code-runner.executorMap": {
-        "c": "cd $dir && gcc -g ./*.c  ./core/*.c  -L../lib/lib* -I../inc/Core_inc  -I../inc/Piclib_inc  -I../inc/Qt_inc -o ../bin/test && ../bin/test -static",
+        "c": "cd $dir && gcc -g ./*.c  ./core/*.c  -L../lib/lib*  -limm32 -lsetupapi -lwinmm -lversion -I../inc/Core_inc  -I../inc/Piclib_inc  -I../inc/Qt_inc  -I../inc/SDL2 -o ../bin/test && ../bin/test ",
+        "cpp":"cd $dir && g++ -g ./*.cpp -L../lib/lib*  -limm32 -lsetupapi -lwinmm -lversion -I../inc/Core_inc  -I../inc/Piclib_inc  -I../inc/Qt_inc  -I../inc/SDL2 -o ../bin/test && ../bin/test ",
         },
         "code-runner.respectShebang": false,
         "code-runner.runInTerminal": true,

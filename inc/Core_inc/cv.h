@@ -30,6 +30,7 @@ Log: 11.3 Yueyang
 
 
 #define WINDOWS
+#define SDL
 
 
 //在不同的平台上一些数据的字长不一样

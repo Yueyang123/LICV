@@ -93,7 +93,8 @@ void Matdestory(Mat* mat);
 Mat MatCreate(u8* filepath,u16 width,u16 height,u8 type);
 //图像类重新调整大小的函数
 Mat MatReshape(Mat src,u32 cols_c,int rows_c);
-
+//图片显示 注意在不同的硬件平台上需要重写这个函数
+void ShowImage(Mat* mat);
 Mat Matload(char* dstname ,char * filename);
 //通配指针提供，跨平台主要的实现方式
  void   (*Show)      (Mat* mat);
@@ -109,7 +110,7 @@ Mat Matload(char* dstname ,char * filename);
 
 //对于常见函数进行指针赋值
 #define Mat_Init   \
-        Show=ShowbmpImage;\
+        Show=ShowImage;\
         at=Matat;\
         change=Matchange;\
         Load=Matload;\

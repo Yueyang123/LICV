@@ -14,6 +14,12 @@ Log: 11.3 Yueyang
 #include "Piclib.h"
 #include <string.h>
 #include <stdlib.h>
+#ifdef SDL
+#include "SDL.h"
+#include "SDL_test_images.h"
+
+#endif // DEBUG
+
 
 Mat Matload(char* dstname ,char * filename)
 {
@@ -163,22 +169,76 @@ Mat MatReshape(Mat src,u32 cols_c,int rows_c)
 
 
 
+
 #ifdef WINDOWS
 
-#endif
+   #ifdef SDL//如果使用了SDL的库函数
+      
+   void ShowImage(Mat* mat)
+   {
+    SDL_Surface *imageSurface = NULL; // 申明用于加载图片的SDL_Surface
+    SDL_Surface *windowSurface = NULL; // 申明用于窗体相关的SDL_Surface
+    if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+    }
+    SDL_Window *window = SDL_CreateWindow("LiWin", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, mat->width, mat->highth, SDL_WINDOW_ALLOW_HIGHDPI);
+    if (NULL == window) {
+    }
+
+    windowSurface = SDL_GetWindowSurface(window);
+    imageSurface = SDL_LoadBMP(mat->PATH);
+    if (NULL == imageSurface) {
+    }
+    SDL_Event windowEvent;
+    while(true) {
+        if (SDL_PollEvent(&windowEvent)) {
+            if (SDL_QUIT == windowEvent.type) {
+                break;
+            }
+        }
+        SDL_BlitSurface(imageSurface, NULL, windowSurface, NULL);
+        SDL_UpdateWindowSurface(window);
+    }
+
+    imageSurface = NULL;
+    windowSurface = NULL;
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+    return 0;
+   }
+      
+   #else if
+      void ShowImage(Mat* mat)
+      {
+         char cmd[266];
+         strcpy(cmd,"start ");
+         strcat(cmd,mat->PATH);
+         printf("%s\n",cmd);
+         system(cmd);
+      }
+
+   #endif
+
+
+
+
+#endif 
+
 
 #ifdef X86_LINUX
 
-#endif
+void ShowImage(Mat* mat)
+{
+   char cmd[266];
+   strcpy(cmd,"display ");
+   strcat(cmd,mat->PATH);
+   printf("%s\n",cmd);
+   system(cmd);
+}
+#endif 
 
 #ifdef ARM_LINUX
 
-#endif
 
-#ifdef ARM_NONE
-
-#endif
-
-
+#endif 
 
 

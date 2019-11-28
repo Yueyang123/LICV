@@ -689,34 +689,3 @@ int SaveAsbmp24Image(char *filepath,Mat* mat)
 
 }
 
-
-#ifdef WINDOWS
-
-void ShowbmpImage(Mat* mat)
-{
-   char cmd[266];
-   strcpy(cmd,"start ");
-   strcat(cmd,mat->PATH);
-   printf("%s\n",cmd);
-   system(cmd);
-}
-
-#endif 
-
-
-#ifdef X86_LINUX
-
-void ShowbmpImage(Mat* mat)
-{
-   char cmd[266];
-   strcpy(cmd,"display ");
-   strcat(cmd,mat->PATH);
-   printf("%s\n",cmd);
-   system(cmd);
-}
-#endif 
-
-#ifdef ARM_LINUX
-
-
-#endif 
