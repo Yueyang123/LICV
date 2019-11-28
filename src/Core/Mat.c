@@ -180,7 +180,6 @@ Mat MatReshape(Mat src,u32 cols_c,int rows_c)
     u32 x,y,color;
     u8* inaddr;
     SDL_Surface *imageSurface = NULL; // 申明用于加载图片的SDL_Surface
-    SDL_Surface *windowSurface = NULL; // 申明用于窗体相关的SDL_Surface
       if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
       }
       SDL_Window *window = SDL_CreateWindow(winname, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, mat->width, mat->highth, SDL_WINDOW_ALLOW_HIGHDPI);
@@ -198,20 +197,12 @@ Mat MatReshape(Mat src,u32 cols_c,int rows_c)
       draw_point(imageSurface,p,color);
     }
     SDL_Event windowEvent;
-    while(true) {
-        if (SDL_PollEvent(&windowEvent)) {
-            if (SDL_QUIT == windowEvent.type) {
-                break;
-            }
-        }
-        SDL_BlitSurface(imageSurface, NULL, windowSurface, NULL);
-        SDL_UpdateWindowSurface(window);
-    }
 
-    imageSurface = NULL;
-    windowSurface = NULL;
-    SDL_DestroyWindow(window);
-    SDL_Quit();
+        SDL_UpdateWindowSurface(window);
+    
+
+   //  imageSurface = NULL;
+   //  SDL_DestroyWindow(window);
    }
       
    #else

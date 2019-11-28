@@ -15,6 +15,9 @@ Log: 11.3 Yueyang
 #include "bmp.h"
 #include "cv.h"
 #include "Mat.h"
+#include "SDL.h"
+#include "SDL_ex.h"
+#undef main
 
 int main()
 {
@@ -28,6 +31,8 @@ int main()
      save("..\\picture\\test1.bmp",&src2);
      Show(&src1,"win1");
      Show(&src2,"win2");
+	 SDL_Wait();
+	 system("pause");
      return 0; 
 }
 
