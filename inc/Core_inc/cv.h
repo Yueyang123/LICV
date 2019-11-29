@@ -27,14 +27,11 @@ Log: 11.3 Yueyang
 #define RGB565_G      0x07E0
 #define RGB565_B      0x001F
 
-
-
-#define WINDOWS
-#define SDL
+#define SDL        1
 
 
 //在不同的平台上一些数据的字长不一样
-#ifdef WINDOWS
+#if (defined _WIN32) || (defined WIN32) || (defined _WIN64) || (defined WIN64)
 
 typedef unsigned short       WORD;
 typedef unsigned long        DWORD;
@@ -54,7 +51,7 @@ typedef uint8_t              u8;
 
 
 
-#ifdef X86_LINUX
+#if (defined __linux__) || (defined __APPLE__)
 
 typedef unsigned             char uint8_t;
 typedef unsigned short       int uint16_t;
@@ -68,24 +65,6 @@ typedef u32                  LONG;
 typedef unsigned char        BYTE;
 
 
-
-#endif
-
-#ifdef ARM_LINUX
-
-#include <sys/stat.h>
-#include <sys/time.h>
-#include <sys/mman.h>
-#include <sys/ioctl.h>
-#include <iostream>
-#include <sys/types.h>
-#include <linux/types.h>
-#include <linux/fb.h>
-#include <linux/videodev2.h>
-
-#endif
-
-#ifdef ARM_NONE
 
 #endif
 

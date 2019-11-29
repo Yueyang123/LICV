@@ -171,12 +171,12 @@ Mat MatReshape(Mat src,u32 cols_c,int rows_c)
 
 
 
-#ifdef WINDOWS
+#if (defined _WIN32) || (defined WIN32) || (defined _WIN64) || (defined WIN64)
 
-   #ifdef SDL//如果使用了SDL的库函数
+   #if SDL//如果使用了SDL的库函数
       
-   void ShowImage(Mat* mat,char* winname)
-   {
+SDL_Window* ShowImage(Mat* mat,char* winname)
+{
     u32 x,y,color;
     u8* inaddr;
     SDL_Surface *imageSurface = NULL; // 申明用于加载图片的SDL_Surface
@@ -196,14 +196,10 @@ Mat MatReshape(Mat src,u32 cols_c,int rows_c)
       color=RGB(*(inaddr),*(inaddr+1),*(inaddr+2));
       draw_point(imageSurface,p,color);
     }
-    SDL_Event windowEvent;
 
-        SDL_UpdateWindowSurface(window);
-    
-
-   //  imageSurface = NULL;
-   //  SDL_DestroyWindow(window);
-   }
+     SDL_UpdateWindowSurface(window);
+     return window;
+}
       
    #else
       void ShowImage(Mat* mat,char * winname)
@@ -223,7 +219,7 @@ Mat MatReshape(Mat src,u32 cols_c,int rows_c)
 #endif 
 
 
-#ifdef X86_LINUX
+#if (defined __linux__) || (defined __APPLE__)
 
 void ShowImage(Mat* mat)
 {
@@ -235,9 +231,6 @@ void ShowImage(Mat* mat)
 }
 #endif 
 
-#ifdef ARM_LINUX
 
-
-#endif 
 
 

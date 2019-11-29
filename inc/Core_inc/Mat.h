@@ -13,18 +13,27 @@ Log: 11.3 Yueyang
 
 #include "cv.h"
 
+#if SDL
+#include "SDL.h"
+#endif
 
-#define BMP_8    0X01
-#define BMP_565  0x02
-#define BMP_888  0x03
-#define BMP_32   0x04
-#define JPEG     0X05
+
 
 #define     RGB(r,g,b)     ((u32)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16))) 
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+typedef enum tagPICTYPE
+{
+ BMP_8,    
+ BMP_565,  
+ BMP_888 , 
+ BMP_32  , 
+ JPEG ,
+ PNG
+}PICTYPE;
 
 typedef struct 
 { // bmfh
@@ -106,11 +115,20 @@ void Matdestory(Mat* mat);
 Mat MatCreate(u8* filepath,u16 width,u16 height,u8 type);
 //图像类重新调整大小的函数
 Mat MatReshape(Mat src,u32 cols_c,int rows_c);
-//图片显示 注意在不同的硬件平台上需要重写这个函数
-void ShowImage(Mat* mat,char* winname);
+
 Mat Matload(char* dstname ,char * filename);
 //通配指针提供，跨平台主要的实现方式
- void   (*Show)      (Mat* mat,char* winname);
+
+#if SDL
+//图片显示 注意在不同的硬件平台上需要重写这个函数
+SDL_Window* ShowImage(Mat* mat,char* winname);
+SDL_Window*   (*Show)      (Mat* mat,char* winname);
+#else
+void ShowImage(Mat* mat,char* winname);
+void (*Show)      (Mat* mat,char* winname);
+#endif
+
+
  u8*    (*at)        (Mat* mat,int width,int highth);
  int    (*change)    (Mat* mat,int x,int y,u32 color);
  Mat    (*Load)      (char* dstname ,char * filename);
